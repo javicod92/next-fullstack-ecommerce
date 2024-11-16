@@ -9,7 +9,7 @@ export default function NavBar() {
   const router = usePathname();
 
   return (
-    <aside className="text-white p-4 mr-1">
+    <aside className="text-white p-4 mr-1 shrink-0">
       <Link href="/" className="flex gap-2 mb-4">
         <svg
           xmlns="http://www.w3.org/2000/svg"
