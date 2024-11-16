@@ -1,11 +1,15 @@
-export default function Home() {
-  return (
-    <div className="bg-zinc-900 w-screen h-screen flex items-center justify-center">
-      <div className="">
-        <button className="bg-white p-2 px-4 rounded-lg">
-          Login with Google
-        </button>
+import { auth } from "@/auth";
+import { LoginButton } from "@/components/AuthButtons";
+
+export default async function Home() {
+  const session = await auth();
+  if (!session) {
+    return (
+      <div className="bg-zinc-900 w-screen h-screen flex items-center justify-center">
+        <LoginButton />
       </div>
-    </div>
-  );
+    );
+  }
+
+  return <div className="">Logged in</div>;
 }
