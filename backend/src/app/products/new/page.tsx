@@ -1,3 +1,5 @@
+import NewProductsForm from "@/components/NewProductsForm";
+
 export default function New() {
-  return <div className="">Nuevos productos</div>;
+  return <NewProductsForm />;
 }
