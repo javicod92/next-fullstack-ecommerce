@@ -27,8 +27,14 @@ import { NextRequest, NextResponse } from "next/server";
 //   }
 // }
 
-export async function GET() {
+export async function GET(request: NextRequest) {
   await mongooseConnect();
+  if (request.nextUrl.searchParams.get("id")) {
+    const product = await Product.findOne({
+      _id: request.nextUrl.searchParams.get("id"),
+    });
+    return NextResponse.json(product);
+  }
   const products = await Product.find();
   return NextResponse.json(products);
 }

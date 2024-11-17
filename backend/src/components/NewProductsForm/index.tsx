@@ -1,20 +1,20 @@
 "use client";
 import { FormEvent, useState } from "react";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 export default function NewProduct() {
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [price, setPrice] = useState<string>("");
+  const router = useRouter();
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const data = { title, description, price };
     try {
-      const response = await axios.post("/api/products", data);
-      setTitle("");
-      setDescription("");
-      setPrice("");
+      await axios.post("/api/products", data);
+      router.push("/products");
     } catch (error) {}
   }
 
