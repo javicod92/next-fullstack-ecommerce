@@ -82,3 +82,24 @@ export async function PUT(request: NextRequest) {
     );
   }
 }
+
+export async function DELETE(request: NextRequest) {
+  try {
+    if (request.nextUrl.searchParams.get("id")) {
+      await Product.deleteOne({ _id: request.nextUrl.searchParams.get("id") });
+      return NextResponse.json(
+        { message: "Product successfully deleted" },
+        { status: 200 }
+      );
+    }
+    return NextResponse.json(
+      { message: "Failed to delete product" },
+      { status: 400 }
+    );
+  } catch (error) {
+    return NextResponse.json(
+      { message: "Failed to delete product", error },
+      { status: 500 }
+    );
+  }
+}
