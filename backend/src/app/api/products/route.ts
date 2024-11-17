@@ -28,15 +28,22 @@ import { NextRequest, NextResponse } from "next/server";
 // }
 
 export async function GET(request: NextRequest) {
-  await mongooseConnect();
-  if (request.nextUrl.searchParams.get("id")) {
-    const product = await Product.findOne({
-      _id: request.nextUrl.searchParams.get("id"),
-    });
-    return NextResponse.json(product);
+  try {
+    await mongooseConnect();
+    if (request.nextUrl.searchParams.get("id")) {
+      const product = await Product.findOne({
+        _id: request.nextUrl.searchParams.get("id"),
+      });
+      return NextResponse.json(product);
+    }
+    const products = await Product.find();
+    return NextResponse.json(products);
+  } catch (error) {
+    return NextResponse.json(
+      { message: "Failed to find product", error },
+      { status: 500 }
+    );
   }
-  const products = await Product.find();
-  return NextResponse.json(products);
 }
 
 export async function POST(request: NextRequest) {
@@ -51,6 +58,26 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     return NextResponse.json(
       { message: "Failed to add product", error },
+      { status: 500 }
+    );
+  }
+}
+
+export async function PUT(request: NextRequest) {
+  try {
+    await mongooseConnect();
+    const { title, description, price, _id } = await request.json();
+    const productDoc = await Product.updateOne(
+      { _id },
+      { title, description, price }
+    );
+    return NextResponse.json(
+      { message: "Product successfully updated", data: productDoc },
+      { status: 200 }
+    );
+  } catch (error) {
+    return NextResponse.json(
+      { message: "Failed to update product", error },
       { status: 500 }
     );
   }

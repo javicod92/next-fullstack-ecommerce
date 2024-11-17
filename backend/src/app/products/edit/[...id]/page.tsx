@@ -1,20 +1,32 @@
 "use client";
 
+import NewProductsForm from "@/components/NewProductsForm";
 import axios from "axios";
 import { useParams } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+
+type ProductsType = {
+  _id: string;
+  title: string;
+  description: string;
+  price: string;
+};
 
 export default function EditProductPage() {
+  const [productInfo, setProductInfo] = useState<ProductsType | null>(null);
   const router = useParams();
   const { id } = router;
 
   useEffect(() => {
-    if (!id) return;
-
     axios.get("/api/products?id=" + id).then((response) => {
-      console.log(response.data);
+      setProductInfo(response.data);
     });
   }, [id]);
 
-  return <div className="">Edit Product form here</div>;
+  return (
+    <div className="">
+      <h1>Edit Product</h1>
+      {productInfo && <NewProductsForm {...productInfo} />}
+    </div>
+  );
 }

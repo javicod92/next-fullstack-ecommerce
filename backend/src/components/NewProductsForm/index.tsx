@@ -3,24 +3,43 @@ import { FormEvent, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
-export default function NewProduct() {
-  const [title, setTitle] = useState<string>("");
-  const [description, setDescription] = useState<string>("");
-  const [price, setPrice] = useState<string>("");
+type ProductsType = {
+  _id?: string;
+  title?: string;
+  description?: string;
+  price?: string;
+};
+
+export default function NewProductForm({
+  _id,
+  title: existingTitle,
+  description: existingDescription,
+  price: existingPrice,
+}: ProductsType) {
+  const [title, setTitle] = useState<string>(existingTitle || "");
+  const [description, setDescription] = useState<string>(
+    existingDescription || ""
+  );
+  const [price, setPrice] = useState<string>(existingPrice || "");
   const router = useRouter();
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const data = { title, description, price };
     try {
-      await axios.post("/api/products", data);
+      if (_id) {
+        // Update Product
+        await axios.put("/api/products", { ...data, _id });
+      } else {
+        // Create Product
+        await axios.post("/api/products", data);
+      }
       router.push("/products");
     } catch (error) {}
   }
 
   return (
     <form onSubmit={handleSubmit}>
-      <h1>New Product</h1>
       <fieldset className="border">
         <legend>
           Product Name{" "}
