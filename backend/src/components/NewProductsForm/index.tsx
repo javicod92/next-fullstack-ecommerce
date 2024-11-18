@@ -1,5 +1,5 @@
 "use client";
-import { FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
@@ -8,6 +8,7 @@ type ProductsType = {
   title?: string;
   description?: string;
   price?: string;
+  images?: string;
 };
 
 export default function NewProductForm({
@@ -15,6 +16,7 @@ export default function NewProductForm({
   title: existingTitle,
   description: existingDescription,
   price: existingPrice,
+  images,
 }: ProductsType) {
   const [title, setTitle] = useState<string>(existingTitle || "");
   const [description, setDescription] = useState<string>(
@@ -38,6 +40,18 @@ export default function NewProductForm({
     } catch (error) {}
   }
 
+  async function uploadImages(e: ChangeEvent<HTMLInputElement>) {
+    const files = e.target.files;
+    if (files && files.length > 0) {
+      const data = new FormData();
+      for (const file of files) {
+        data.append("file", file);
+      }
+      const response = await axios.post("/api/upload", data);
+      console.log(response.data);
+    }
+  }
+
   return (
     <form onSubmit={handleSubmit}>
       <fieldset className="border">
@@ -51,7 +65,36 @@ export default function NewProductForm({
           value={title}
           onChange={(e) => setTitle(e.currentTarget.value)}
           required
+          aria-label="Product Title"
         />
+      </fieldset>
+      <fieldset>
+        <legend>Photos</legend>
+        <div className="mb-2">
+          <label className="w-24 h-24 cursor-pointer bg-zinc-200 flex  items-center justify-center gap-1 text-sm text-zinc-800 rounded-lg">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="size-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5m-13.5-9L12 3m0 0 4.5 4.5M12 3v13.5"
+              />
+            </svg>
+            <div>Upload</div>
+            <input
+              type="file"
+              className="hidden"
+              onChange={uploadImages}
+              aria-label="Product Images"
+            ></input>
+          </label>
+        </div>
       </fieldset>
       <fieldset>
         <legend>
@@ -64,6 +107,7 @@ export default function NewProductForm({
           value={description}
           onChange={(e) => setDescription(e.currentTarget.value)}
           required
+          aria-label="Product Description"
         ></textarea>
       </fieldset>
       <fieldset>
@@ -79,6 +123,7 @@ export default function NewProductForm({
           value={price}
           onChange={(e) => setPrice(e.currentTarget.value)}
           required
+          aria-label="Product Price"
         />
       </fieldset>
       <div>
