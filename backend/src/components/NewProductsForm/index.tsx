@@ -2,13 +2,14 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 type ProductsType = {
   _id?: string;
   title?: string;
   description?: string;
   price?: string;
-  images?: string;
+  images?: Array<string>;
 };
 
 export default function NewProductForm({
@@ -16,18 +17,19 @@ export default function NewProductForm({
   title: existingTitle,
   description: existingDescription,
   price: existingPrice,
-  images,
+  images: existingImages,
 }: ProductsType) {
   const [title, setTitle] = useState<string>(existingTitle || "");
   const [description, setDescription] = useState<string>(
     existingDescription || ""
   );
   const [price, setPrice] = useState<string>(existingPrice || "");
+  const [images, setImages] = useState(existingImages || []);
   const router = useRouter();
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const data = { title, description, price };
+    const data = { title, description, price, images };
     try {
       if (_id) {
         // Update Product
@@ -48,7 +50,10 @@ export default function NewProductForm({
         data.append("file", file);
       }
       const response = await axios.post("/api/upload", data);
-      console.log(response.data);
+      setImages((currentImages) => {
+        console.log([...currentImages, ...response.data.urls]);
+        return [...currentImages, ...response.data.urls];
+      });
     }
   }
 
@@ -70,7 +75,13 @@ export default function NewProductForm({
       </fieldset>
       <fieldset>
         <legend>Photos</legend>
-        <div className="mb-2">
+        <div className="mb-2 flex flex-wrap gap-2">
+          {images &&
+            images.map((url) => (
+              <div key={url} className="h-24">
+                <img src={url} alt="" className="rounded-lg" />
+              </div>
+            ))}
           <label className="w-24 h-24 cursor-pointer bg-zinc-200 flex  items-center justify-center gap-1 text-sm text-zinc-800 rounded-lg">
             <svg
               xmlns="http://www.w3.org/2000/svg"

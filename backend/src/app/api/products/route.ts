@@ -49,8 +49,13 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     await mongooseConnect();
-    const { title, description, price } = await request.json();
-    const productDoc = await Product.create({ title, description, price });
+    const { title, description, price, images } = await request.json();
+    const productDoc = await Product.create({
+      title,
+      description,
+      price,
+      images,
+    });
     return NextResponse.json(
       { message: "Product successfully added", data: productDoc },
       { status: 200 }
@@ -66,10 +71,10 @@ export async function POST(request: NextRequest) {
 export async function PUT(request: NextRequest) {
   try {
     await mongooseConnect();
-    const { title, description, price, _id } = await request.json();
+    const { title, description, price, images, _id } = await request.json();
     const productDoc = await Product.updateOne(
       { _id },
-      { title, description, price }
+      { title, description, price, images }
     );
     return NextResponse.json(
       { message: "Product successfully updated", data: productDoc },
