@@ -22,7 +22,7 @@ export async function POST(request: NextRequest) {
 
   const response: PromiseType = await new Promise((resolve, reject) => {
     cloudinary.uploader
-      .upload_stream({}, (err, result) => {
+      .upload_stream({ folder: "next-ecommerce" }, (err, result) => {
         if (err) reject(err);
         resolve(result as PromiseType);
       })
