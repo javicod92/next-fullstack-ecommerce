@@ -92,7 +92,7 @@ export default function NewProductForm({
               className="hidden"
               onChange={uploadImages}
               aria-label="Product Images"
-            ></input>
+            />
           </label>
         </div>
       </fieldset>
