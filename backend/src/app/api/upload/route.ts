@@ -33,7 +33,7 @@ export async function POST(request: NextRequest) {
     const urls = await Promise.all(uploadPromises);
 
     return NextResponse.json({
-      message: "Imágenes subidas con éxito",
+      message: "Success in uploading images",
       urls,
     });
   } catch (error) {
