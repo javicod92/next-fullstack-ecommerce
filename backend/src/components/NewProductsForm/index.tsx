@@ -1,9 +1,9 @@
 "use client";
 import { ChangeEvent, FormEvent, useState } from "react";
-import axios from "axios";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
 import { Loader } from "../Loader";
+import axios from "axios";
+// import Image from "next/image";
 
 type ProductsType = {
   _id?: string;
