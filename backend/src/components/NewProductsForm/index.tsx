@@ -3,6 +3,7 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { Loader } from "../Loader";
 
 type ProductsType = {
   _id?: string;
@@ -25,6 +26,7 @@ export default function NewProductForm({
   );
   const [price, setPrice] = useState<string>(existingPrice || "");
   const [images, setImages] = useState(existingImages || []);
+  const [isUploading, setIsUploading] = useState(false);
   const router = useRouter();
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
@@ -45,6 +47,7 @@ export default function NewProductForm({
   async function uploadImages(e: ChangeEvent<HTMLInputElement>) {
     const files = e.target.files;
     if (files && files.length > 0) {
+      setIsUploading(true);
       const data = new FormData();
       for (const file of files) {
         data.append("file", file);
@@ -54,8 +57,34 @@ export default function NewProductForm({
         console.log([...currentImages, ...response.data.urls]);
         return [...currentImages, ...response.data.urls];
       });
+      setIsUploading(false);
     }
   }
+
+  const handleDragStart = (
+    e: React.DragEvent<HTMLDivElement>,
+    index: number
+  ) => {
+    e.dataTransfer.setData("draggedIndex", index.toString());
+  };
+
+  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault(); // Necesario para permitir el drop
+  };
+
+  const handleDrop = (e: React.DragEvent<HTMLDivElement>, index: number) => {
+    const draggedIndex = parseInt(e.dataTransfer.getData("draggedIndex"), 10);
+
+    // Evitar que un elemento sea soltado en sí mismo
+    if (draggedIndex === index) return;
+
+    // Crear un nuevo array con los elementos reordenados
+    const updatedImages = [...images];
+    const [draggedItem] = updatedImages.splice(draggedIndex, 1); // Remueve el elemento arrastrado
+    updatedImages.splice(index, 0, draggedItem); // Inserta en la nueva posición
+
+    setImages(updatedImages); // Actualiza el estado
+  };
 
   return (
     <form onSubmit={handleSubmit}>
@@ -75,13 +104,25 @@ export default function NewProductForm({
       </fieldset>
       <fieldset>
         <legend>Photos</legend>
-        <div className="mb-2 flex flex-wrap gap-2">
+        <div className="mb-2 flex flex-wrap gap-1">
           {images &&
-            images.map((url) => (
-              <div key={url} className="h-24">
+            images.map((url, index) => (
+              <div
+                key={url}
+                className="h-24"
+                draggable
+                onDragStart={(e) => handleDragStart(e, index)}
+                onDragOver={handleDragOver}
+                onDrop={(e) => handleDrop(e, index)}
+              >
                 <img src={url} alt="" className="rounded-lg" />
               </div>
             ))}
+          {isUploading && (
+            <div className="h-24 min-w-24 flex items-center justify-center">
+              <Loader />
+            </div>
+          )}
           <label className="w-24 h-24 cursor-pointer bg-zinc-200 flex  items-center justify-center gap-1 text-sm text-zinc-800 rounded-lg">
             <svg
               xmlns="http://www.w3.org/2000/svg"
