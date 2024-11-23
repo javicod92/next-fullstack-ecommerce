@@ -19,12 +19,14 @@ fieldset:focus-within {
 }
 
 input,
-textarea {
+textarea,
+select {
   @apply border-none w-full text-base font-light;
 }
 
 input:focus,
-textarea:focus {
+textarea:focus,
+select:focus {
   @apply border-none outline-none border-cyan-900;
 }
 
