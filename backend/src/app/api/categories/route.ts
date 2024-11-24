@@ -20,7 +20,12 @@ export async function POST(request: NextRequest) {
   try {
     await mongooseConnect();
     const { name, parentCategory } = await request.json();
-    const categoryDoc = await Category.create({ name, parent: parentCategory });
+    const categoryData: { name: string; parent?: string } = { name };
+
+    if (parentCategory) {
+      categoryData.parent = parentCategory;
+    }
+    const categoryDoc = await Category.create(categoryData);
     return NextResponse.json(categoryDoc, { status: 200 });
   } catch (error) {
     return NextResponse.json(
@@ -34,13 +39,16 @@ export async function PUT(request: NextRequest) {
   try {
     await mongooseConnect();
     const { name, parentCategory, _id } = await request.json();
-    const categoryDoc = await Category.updateOne(
-      { _id },
-      {
-        name,
-        parent: parentCategory,
-      }
-    );
+
+    const updateData: { name: string; parent?: string } = { name };
+    if (parentCategory) {
+      updateData.parent = parentCategory;
+    } else {
+      // Si `parentCategory` está vacío, elimina el campo `parent`
+      updateData.parent = undefined;
+    }
+
+    const categoryDoc = await Category.updateOne({ _id }, updateData);
     return NextResponse.json(categoryDoc, { status: 200 });
   } catch (error) {
     return NextResponse.json(
