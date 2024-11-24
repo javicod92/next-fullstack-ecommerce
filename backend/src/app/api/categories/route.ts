@@ -5,7 +5,9 @@ import { NextRequest, NextResponse } from "next/server";
 export async function GET(request: NextRequest) {
   try {
     await mongooseConnect();
-    return NextResponse.json(await Category.find(), { status: 200 });
+    return NextResponse.json(await Category.find().populate("parent"), {
+      status: 200,
+    });
   } catch (error) {
     return NextResponse.json(
       { message: "Error in obtaining data", error },
@@ -23,6 +25,49 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     return NextResponse.json(
       { message: "Error saving changes", error },
+      { status: 500 }
+    );
+  }
+}
+
+export async function PUT(request: NextRequest) {
+  try {
+    await mongooseConnect();
+    const { name, parentCategory, _id } = await request.json();
+    const categoryDoc = await Category.updateOne(
+      { _id },
+      {
+        name,
+        parent: parentCategory,
+      }
+    );
+    return NextResponse.json(categoryDoc, { status: 200 });
+  } catch (error) {
+    return NextResponse.json(
+      { message: "Error saving changes", error },
+      { status: 500 }
+    );
+  }
+}
+
+export async function DELETE(request: NextRequest) {
+  try {
+    const { searchParams } = new URL(request.url);
+    const _id = searchParams.get("_id");
+
+    if (!_id) {
+      return NextResponse.json({ message: "ID is required" }, { status: 400 });
+    }
+
+    await mongooseConnect();
+    await Category.deleteOne({ _id });
+    return NextResponse.json(
+      { message: "Category successfully deleted" },
+      { status: 200 }
+    );
+  } catch (error) {
+    return NextResponse.json(
+      { message: "Error deleting a category", error },
       { status: 500 }
     );
   }
