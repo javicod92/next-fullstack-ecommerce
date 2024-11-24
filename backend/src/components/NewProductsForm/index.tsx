@@ -1,5 +1,5 @@
 "use client";
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Loader } from "../Loader";
 import axios from "axios";
@@ -11,6 +11,12 @@ type ProductsType = {
   description?: string;
   price?: string;
   images?: Array<string>;
+  category?: string;
+};
+
+type CategoryTypes = {
+  _id: string;
+  name: string;
 };
 
 export default function NewProductForm({
@@ -19,19 +25,28 @@ export default function NewProductForm({
   description: existingDescription,
   price: existingPrice,
   images: existingImages,
+  category: existingCategory,
 }: ProductsType) {
   const [title, setTitle] = useState<string>(existingTitle || "");
   const [description, setDescription] = useState<string>(
     existingDescription || ""
   );
+  const [category, setCategory] = useState<string>(existingCategory || "");
   const [price, setPrice] = useState<string>(existingPrice || "");
   const [images, setImages] = useState(existingImages || []);
   const [isUploading, setIsUploading] = useState(false);
   const router = useRouter();
+  const [categories, setCategories] = useState<Array<CategoryTypes>>([]);
+
+  useEffect(() => {
+    axios.get("/api/categories").then((result) => {
+      setCategories(result.data);
+    });
+  }, []);
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const data = { title, description, price, images };
+    const data = { title, description, price, images, category };
     try {
       if (_id) {
         // Update Product
@@ -101,6 +116,18 @@ export default function NewProductForm({
           required
           aria-label="Product Title"
         />
+      </fieldset>
+      <fieldset>
+        <legend>Category</legend>
+        <select value={category} onChange={(e) => setCategory(e.target.value)}>
+          <option value="">Uncategorized</option>
+          {categories &&
+            categories.map((category) => (
+              <option key={category._id} value={category._id}>
+                {category.name}
+              </option>
+            ))}
+        </select>
       </fieldset>
       <fieldset>
         <legend>Photos</legend>
