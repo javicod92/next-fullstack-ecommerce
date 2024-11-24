@@ -97,11 +97,11 @@ export default function CategoriesPage() {
     });
   }
 
-  // Change this function
-  function removeProperty(index: number) {
+  function removeProperty(indexToRemove: number) {
     setProperties((prev) => {
-      const newProperties = [...prev];
-      return newProperties.splice(index, 1);
+      return [...prev].filter((_, index) => {
+        return index !== indexToRemove;
+      });
     });
   }
 
@@ -171,6 +171,7 @@ export default function CategoriesPage() {
                   />
                 </div>
                 <button
+                  type="button"
                   onClick={() => removeProperty(index)}
                   className="delete p-2 px-4 text-white rounded-lg"
                 >
