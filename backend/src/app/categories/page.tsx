@@ -10,6 +10,11 @@ type CategoriesProps = {
   parent?: { name: string; _id: string };
 };
 
+type PropertiesProps = {
+  name: string;
+  values: string;
+};
+
 export default function CategoriesPage() {
   const [editedCategory, setEditedCategory] = useState<CategoriesProps | null>(
     null
@@ -19,6 +24,7 @@ export default function CategoriesPage() {
   const [name, setName] = useState("");
   const [parentCategory, setParentCategory] = useState<string | undefined>("");
   const [categories, setCategories] = useState<Array<CategoriesProps>>([]);
+  const [properties, setProperties] = useState<Array<PropertiesProps>>([]);
 
   useEffect(() => {
     fetchCategories();
@@ -61,37 +67,118 @@ export default function CategoriesPage() {
     }
   }
 
+  function addProperty() {
+    setProperties((prev) => {
+      return [...prev, { name: "", values: "" }];
+    });
+  }
+
+  function handlePropertyNameChange(
+    index: number,
+    property: PropertiesProps,
+    newName: string
+  ) {
+    setProperties((prev) => {
+      const properties = [...prev];
+      properties[index].name = newName;
+      return properties;
+    });
+  }
+
+  function handlePropertyValueChange(
+    index: number,
+    property: PropertiesProps,
+    newValues: string
+  ) {
+    setProperties((prev) => {
+      const properties = [...prev];
+      properties[index].values = newValues;
+      return properties;
+    });
+  }
+
+  // Change this function
+  function removeProperty(index: number) {
+    setProperties((prev) => {
+      const newProperties = [...prev];
+      return newProperties.splice(index, 1);
+    });
+  }
+
   return (
     <div>
       <h1>Categories</h1>
       <form onSubmit={saveCategory}>
-        <fieldset className="m-0">
-          <legend>
-            {editedCategory
-              ? `Edit category (${editedCategory?.name})`
-              : "New category name"}
-          </legend>
-          <input
-            type="text"
-            placeholder="Category name"
-            aria-label="category name"
-            value={name}
-            onChange={(e) => setName(e.currentTarget.value)}
-          />
-        </fieldset>
-        <select
-          className="mt-1 py-2"
-          value={parentCategory}
-          onChange={(e) => setParentCategory(e.target.value)}
-        >
-          <option value="">No parent category</option>
-          {categories &&
-            categories.map((category) => (
-              <option key={category._id} value={category._id}>
-                {category.name}
-              </option>
+        <div>
+          <fieldset className="m-0">
+            <legend>
+              {editedCategory
+                ? `Edit category (${editedCategory?.name})`
+                : "New category name"}
+            </legend>
+            <input
+              type="text"
+              placeholder="Category name"
+              aria-label="category name"
+              value={name}
+              onChange={(e) => setName(e.currentTarget.value)}
+            />
+          </fieldset>
+          <select
+            className="mt-1 py-2"
+            value={parentCategory}
+            onChange={(e) => setParentCategory(e.target.value)}
+          >
+            <option value="">No parent category</option>
+            {categories &&
+              categories.map((category) => (
+                <option key={category._id} value={category._id}>
+                  {category.name}
+                </option>
+              ))}
+          </select>
+        </div>
+        <div>
+          <label className="block">Properties</label>
+          <button
+            onClick={addProperty}
+            type="button"
+            className="btn-default text-sm mb-2"
+          >
+            Add new property
+          </button>
+          {properties &&
+            properties.map((property, index) => (
+              <div key={index} className="flex gap-1 mb-1">
+                <div className="grow border flex px-2 rounded-lg">
+                  <input
+                    type="text"
+                    placeholder="Property Name (example: color)"
+                    value={property.name}
+                    onChange={(e) =>
+                      handlePropertyNameChange(index, property, e.target.value)
+                    }
+                  />
+                </div>
+                <div className="grow border flex px-2 rounded-lg">
+                  <input
+                    type="text"
+                    placeholder="Values, comma separated"
+                    value={property.values}
+                    onChange={(e) =>
+                      handlePropertyValueChange(index, property, e.target.value)
+                    }
+                  />
+                </div>
+                <button
+                  onClick={() => removeProperty(index)}
+                  className="delete p-2 px-4 text-white rounded-lg"
+                >
+                  Remove
+                </button>
+              </div>
             ))}
-        </select>
+        </div>
         <button type="submit" className="btn-primary">
           Save
         </button>
