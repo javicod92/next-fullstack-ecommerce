@@ -138,15 +138,8 @@ export default function CategoriesPage() {
               ))}
           </select>
         </div>
-        <div>
-          <label className="block">Properties</label>
-          <button
-            onClick={addProperty}
-            type="button"
-            className="btn-default text-sm mb-2"
-          >
-            Add new property
-          </button>
+        <fieldset className="mt-4">
+          <legend className="block">Properties</legend>
           {properties &&
             properties.map((property, index) => (
               <div key={index} className="flex gap-1 mb-1">
@@ -179,7 +172,14 @@ export default function CategoriesPage() {
                 </button>
               </div>
             ))}
-        </div>
+          <button
+            onClick={addProperty}
+            type="button"
+            className="btn-default text-sm mb-2"
+          >
+            Add new property
+          </button>
+        </fieldset>
         <button type="submit" className="btn-primary">
           Save
         </button>
