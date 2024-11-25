@@ -8,6 +8,7 @@ type CategoriesProps = {
   _id: string;
   name: string;
   parent?: { name: string; _id: string };
+  properties: Array<{ name: string; values: string[] }>;
 };
 
 type PropertiesProps = {
@@ -62,6 +63,12 @@ export default function CategoriesPage() {
     setEditedCategory(category);
     setName(category.name);
     setParentCategory(category.parent?._id);
+    setProperties(
+      category.properties.map(({ name, values }) => ({
+        name,
+        values: values.join(","),
+      }))
+    );
   }
 
   function deleteCategory(category: CategoriesProps) {
@@ -196,6 +203,7 @@ export default function CategoriesPage() {
                 setEditedCategory(null);
                 setName("");
                 setParentCategory("");
+                setProperties([]);
               }}
               type="button"
               className="delete mt-4 text-white p-2 px-4 rounded-lg"
