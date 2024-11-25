@@ -19,12 +19,17 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     await mongooseConnect();
-    const { name, parentCategory } = await request.json();
-    const categoryData: { name: string; parent?: string } = { name };
+    const { name, parentCategory, properties } = await request.json();
+    const categoryData: {
+      name: string;
+      parent?: string;
+      properties?: Array<Record<string, string>>;
+    } = {
+      name,
+      parent: parentCategory || undefined,
+      properties: properties || undefined,
+    };
 
-    if (parentCategory) {
-      categoryData.parent = parentCategory;
-    }
     const categoryDoc = await Category.create(categoryData);
     return NextResponse.json(categoryDoc, { status: 200 });
   } catch (error) {
@@ -38,15 +43,17 @@ export async function POST(request: NextRequest) {
 export async function PUT(request: NextRequest) {
   try {
     await mongooseConnect();
-    const { name, parentCategory, _id } = await request.json();
+    const { name, parentCategory, properties, _id } = await request.json();
 
-    const updateData: { name: string; parent?: string } = { name };
-    if (parentCategory) {
-      updateData.parent = parentCategory;
-    } else {
-      // Si `parentCategory` está vacío, elimina el campo `parent`
-      updateData.parent = undefined;
-    }
+    const updateData: {
+      name: string;
+      parent?: string;
+      properties?: Array<Record<string, string>>;
+    } = {
+      name,
+      parent: parentCategory || undefined,
+      properties: properties || undefined,
+    };
 
     const categoryDoc = await Category.updateOne({ _id }, updateData);
     return NextResponse.json(categoryDoc, { status: 200 });
