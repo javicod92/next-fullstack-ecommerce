@@ -174,7 +174,7 @@ export default function NewProductForm({
       </fieldset>
       <fieldset className="flex flex-col gap-2">
         <legend>Properties</legend>
-        {propertiesToFill &&
+        {propertiesToFill.length > 0 ? (
           propertiesToFill.map((property) => (
             <div key={property.name} className="flex gap-1">
               <div>{property.name}: </div>
@@ -190,7 +190,10 @@ export default function NewProductForm({
                 ))}
               </select>
             </div>
-          ))}
+          ))
+        ) : (
+          <h2>No category properties</h2>
+        )}
       </fieldset>
       <fieldset>
         <legend>Photos</legend>
