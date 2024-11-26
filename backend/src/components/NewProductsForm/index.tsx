@@ -17,6 +17,7 @@ type ProductsType = {
 type CategoryTypes = {
   _id: string;
   name: string;
+  properties?: Array<{ name: string; values: string[] }>;
 };
 
 export default function NewProductForm({
@@ -101,6 +102,14 @@ export default function NewProductForm({
     setImages(updatedImages); // Actualiza el estado
   };
 
+  const propertiesToFill = [];
+  if (categories && category) {
+    const selCatInfo = categories.find(({ _id }) => _id === category);
+    if (selCatInfo?.properties) {
+      propertiesToFill.push(...selCatInfo.properties);
+    }
+  }
+
   return (
     <form onSubmit={handleSubmit}>
       <fieldset className="border">
@@ -129,6 +138,10 @@ export default function NewProductForm({
             ))}
         </select>
       </fieldset>
+      {propertiesToFill &&
+        propertiesToFill.map((property) => (
+          <div className="">{property.name}</div>
+        ))}
       <fieldset>
         <legend>Photos</legend>
         <div className="mb-2 flex flex-wrap gap-1">

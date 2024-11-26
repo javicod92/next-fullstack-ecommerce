@@ -138,21 +138,25 @@ export default function CategoriesPage() {
               aria-label="category name"
               value={name}
               onChange={(e) => setName(e.currentTarget.value)}
+              required
             />
           </fieldset>
-          <select
-            className="mt-1 py-2"
-            value={parentCategory}
-            onChange={(e) => setParentCategory(e.target.value)}
-          >
-            <option value="">No parent category</option>
-            {categories &&
-              categories.map((category) => (
-                <option key={category._id} value={category._id}>
-                  {category.name}
-                </option>
-              ))}
-          </select>
+          <fieldset className="mt-4">
+            <legend>Parent Category</legend>
+            <select
+              className="mt-1 py-2"
+              value={parentCategory}
+              onChange={(e) => setParentCategory(e.target.value)}
+            >
+              <option value="">No parent category</option>
+              {categories &&
+                categories.map((category) => (
+                  <option key={category._id} value={category._id}>
+                    {category.name}
+                  </option>
+                ))}
+            </select>
+          </fieldset>
         </div>
         <fieldset className="mt-4">
           <legend className="block">Properties</legend>
@@ -197,6 +201,13 @@ export default function CategoriesPage() {
           </button>
         </fieldset>
         <div className="flex gap-1">
+          <button
+            type="submit"
+            className={!name ? "btn-disabled" : "btn-primary"}
+            disabled={!name}
+          >
+            Save
+          </button>
           {editedCategory && (
             <button
               onClick={() => {
@@ -211,9 +222,6 @@ export default function CategoriesPage() {
               Cancel
             </button>
           )}
-          <button type="submit" className="btn-primary">
-            Save
-          </button>
         </div>
       </form>
       {!editedCategory && (
