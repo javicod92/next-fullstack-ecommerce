@@ -49,7 +49,7 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     await mongooseConnect();
-    const { title, description, price, images, category } =
+    const { title, description, price, images, category, properties } =
       await request.json();
     const productDoc = await Product.create({
       title,
@@ -57,6 +57,7 @@ export async function POST(request: NextRequest) {
       price,
       images,
       category,
+      properties,
     });
     return NextResponse.json(
       { message: "Product successfully added", data: productDoc },
@@ -73,11 +74,11 @@ export async function POST(request: NextRequest) {
 export async function PUT(request: NextRequest) {
   try {
     await mongooseConnect();
-    const { title, description, price, images, category, _id } =
+    const { title, description, price, images, category, properties, _id } =
       await request.json();
     const productDoc = await Product.updateOne(
       { _id },
-      { title, description, price, images, category }
+      { title, description, price, images, category, properties }
     );
     return NextResponse.json(
       { message: "Product successfully updated", data: productDoc },

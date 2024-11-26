@@ -12,12 +12,18 @@ type ProductsType = {
   price?: string;
   images?: Array<string>;
   category?: string;
+  properties: Record<string, string>;
 };
 
 type CategoryTypes = {
   _id: string;
   name: string;
   properties?: Array<{ name: string; values: string[] }>;
+  parent: {
+    name: string;
+    properties: Array<{ name: string; values: string[] }>;
+    _id: string;
+  };
 };
 
 export default function NewProductForm({
@@ -27,12 +33,16 @@ export default function NewProductForm({
   price: existingPrice,
   images: existingImages,
   category: existingCategory,
+  properties: existingProperties,
 }: ProductsType) {
   const [title, setTitle] = useState<string>(existingTitle || "");
   const [description, setDescription] = useState<string>(
     existingDescription || ""
   );
   const [category, setCategory] = useState<string>(existingCategory || "");
+  const [productProperties, setProductProperties] = useState<
+    Record<string, string>
+  >(existingProperties || {});
   const [price, setPrice] = useState<string>(existingPrice || "");
   const [images, setImages] = useState(existingImages || []);
   const [isUploading, setIsUploading] = useState(false);
@@ -47,7 +57,14 @@ export default function NewProductForm({
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const data = { title, description, price, images, category };
+    const data = {
+      title,
+      description,
+      price,
+      images,
+      category,
+      properties: productProperties,
+    };
     try {
       if (_id) {
         // Update Product
@@ -104,10 +121,27 @@ export default function NewProductForm({
 
   const propertiesToFill = [];
   if (categories && category) {
-    const selCatInfo = categories.find(({ _id }) => _id === category);
-    if (selCatInfo?.properties) {
-      propertiesToFill.push(...selCatInfo.properties);
+    let catInfo = categories.find(({ _id }) => _id === category);
+    if (catInfo?.properties) {
+      propertiesToFill.push(...catInfo.properties);
     }
+    while (catInfo?.parent?._id) {
+      const parentCat = categories.find(
+        ({ _id }) => _id === catInfo?.parent?._id
+      );
+      if (parentCat?.properties) {
+        propertiesToFill.push(...parentCat.properties);
+      }
+      catInfo = parentCat;
+    }
+  }
+
+  function setProductProp(propName: string, value: string) {
+    setProductProperties((prev) => {
+      const newProductProps = { ...prev };
+      newProductProps[propName] = value;
+      return newProductProps;
+    });
   }
 
   return (
@@ -138,10 +172,26 @@ export default function NewProductForm({
             ))}
         </select>
       </fieldset>
-      {propertiesToFill &&
-        propertiesToFill.map((property) => (
-          <div className="">{property.name}</div>
-        ))}
+      <fieldset className="flex flex-col gap-2">
+        <legend>Properties</legend>
+        {propertiesToFill &&
+          propertiesToFill.map((property) => (
+            <div key={property.name} className="flex gap-1">
+              <div>{property.name}: </div>
+              <select
+                className="!border !border-solid rounded-md"
+                value={productProperties[property.name]}
+                onChange={(e) => setProductProp(property.name, e.target.value)}
+              >
+                {property.values.map((value) => (
+                  <option key={value} value={value}>
+                    {value}
+                  </option>
+                ))}
+              </select>
+            </div>
+          ))}
+      </fieldset>
       <fieldset>
         <legend>Photos</legend>
         <div className="mb-2 flex flex-wrap gap-1">
