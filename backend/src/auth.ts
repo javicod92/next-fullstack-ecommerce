@@ -27,6 +27,16 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   },
 });
 
+export async function isAdmin() {
+  const session = await auth();
+
+  const userEmail = session?.user?.email;
+  if (!userEmail || !adminEmails?.includes(userEmail)) {
+    throw "Not an admin";
+  }
+}
+
+// this code allows more flexibility by allowing to choose between "admin" and "users"
 // export const { handlers, signIn, signOut, auth } = NextAuth({
 //   adapter: MongoDBAdapter(client),
 //   providers: [Google],
@@ -49,12 +59,3 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 //     },
 //   },
 // });
-
-export async function isAdmin() {
-  const session = await auth();
-
-  const userEmail = session?.user?.email;
-  if (!userEmail || !adminEmails?.includes(userEmail)) {
-    throw "Not an admin";
-  }
-}
