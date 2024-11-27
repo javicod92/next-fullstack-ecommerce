@@ -1,10 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { v2 as cloudinary } from "cloudinary";
+import { isAdmin } from "@/auth";
 
 type PromiseType = Record<string, string>;
 
 export async function POST(request: NextRequest) {
   try {
+    await isAdmin();
     const formData = await request.formData();
 
     // Obtain all images of form

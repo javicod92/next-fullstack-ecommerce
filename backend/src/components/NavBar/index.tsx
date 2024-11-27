@@ -1,16 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { signOut } from "next-auth/react";
 
 export default function NavBar() {
   const inactiveLink = "flex gap-2 p-1";
-  const activeLink = inactiveLink + " " + "bg-white text-blue-900 rounded-lg";
+  const activeLink = inactiveLink + " " + "bg-white text-blue-900 rounded-md";
   const router = usePathname();
 
   async function signOutFunction() {
-    signOut();
+    await signOut();
   }
 
   return (
@@ -135,7 +135,7 @@ export default function NavBar() {
           </svg>
           Settings
         </Link>
-        <button onClick={() => signOutFunction()} className={inactiveLink}>
+        <button onClick={signOutFunction} className={inactiveLink}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

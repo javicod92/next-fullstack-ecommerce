@@ -1,9 +1,11 @@
+import { isAdmin } from "@/auth";
 import { mongooseConnect } from "@/lib/mongoose";
 import { Category } from "@/models/Category";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
   try {
+    await isAdmin();
     await mongooseConnect();
     return NextResponse.json(await Category.find().populate("parent"), {
       status: 200,
@@ -18,6 +20,7 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
+    await isAdmin();
     await mongooseConnect();
     const { name, parentCategory, properties } = await request.json();
     const categoryData: {
@@ -42,6 +45,7 @@ export async function POST(request: NextRequest) {
 
 export async function PUT(request: NextRequest) {
   try {
+    await isAdmin();
     await mongooseConnect();
     const { name, parentCategory, properties, _id } = await request.json();
 
@@ -67,6 +71,7 @@ export async function PUT(request: NextRequest) {
 
 export async function DELETE(request: NextRequest) {
   try {
+    await isAdmin();
     const { searchParams } = new URL(request.url);
     const _id = searchParams.get("_id");
 

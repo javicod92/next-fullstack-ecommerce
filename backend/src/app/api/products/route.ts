@@ -1,3 +1,4 @@
+import { isAdmin } from "@/auth";
 import client from "@/lib/db";
 import { mongooseConnect } from "@/lib/mongoose";
 import { Product } from "@/models/Product";
@@ -29,6 +30,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
   try {
+    await isAdmin();
     await mongooseConnect();
     if (request.nextUrl.searchParams.get("id")) {
       const product = await Product.findOne({
@@ -48,6 +50,7 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
+    await isAdmin();
     await mongooseConnect();
     const { title, description, price, images, category, properties } =
       await request.json();
@@ -73,6 +76,7 @@ export async function POST(request: NextRequest) {
 
 export async function PUT(request: NextRequest) {
   try {
+    await isAdmin();
     await mongooseConnect();
     const { title, description, price, images, category, properties, _id } =
       await request.json();
@@ -94,6 +98,7 @@ export async function PUT(request: NextRequest) {
 
 export async function DELETE(request: NextRequest) {
   try {
+    await isAdmin();
     if (request.nextUrl.searchParams.get("id")) {
       await Product.deleteOne({ _id: request.nextUrl.searchParams.get("id") });
       return NextResponse.json(
