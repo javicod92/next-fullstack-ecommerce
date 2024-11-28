@@ -22,7 +22,7 @@ export default async function RootLayout({
     return (
       <html lang="en">
         <body className={`${inter.className} antialiased`}>
-          <div className="bg-zinc-900 w-screen h-screen flex items-center justify-center">
+          <div className="bg-bgGray w-screen h-screen flex items-center justify-center">
             <LoginButton />
           </div>
         </body>
@@ -33,7 +33,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} antialiased`}>
-        <div className="bg-zinc-800 min-h-screen flex">
+        <div className="bg-bgGray min-h-screen flex">
           <NavBar />
           <main className="bg-white flex-grow p-4">{children}</main>
         </div>

@@ -6,7 +6,8 @@ import { signOut } from "next-auth/react";
 
 export default function NavBar() {
   const inactiveLink = "flex gap-2 p-1";
-  const activeLink = inactiveLink + " " + "bg-white text-blue-900 rounded-md";
+  const activeLink =
+    inactiveLink + " " + "bg-highlight text-primary rounded-sm";
   const router = usePathname();
 
   async function signOutFunction() {
@@ -14,7 +15,7 @@ export default function NavBar() {
   }
 
   return (
-    <aside className="text-white p-4 mr-1 shrink-0">
+    <aside className="text-gray-500 p-4 mr-1 shrink-0">
       <Link href="/" className="flex gap-2 mb-4">
         <svg
           xmlns="http://www.w3.org/2000/svg"
