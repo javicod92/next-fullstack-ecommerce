@@ -32,7 +32,7 @@ export async function isAdmin() {
 
   const userEmail = session?.user?.email;
   if (!userEmail || !adminEmails?.includes(userEmail)) {
-    throw "Not an admin";
+    throw "Not authorized";
   }
 }
 
