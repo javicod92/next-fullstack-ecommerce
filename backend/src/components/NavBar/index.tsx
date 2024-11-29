@@ -6,8 +6,9 @@ import { signOut } from "next-auth/react";
 
 export default function NavBar() {
   const inactiveLink = "flex gap-2 p-1";
-  const activeLink =
-    inactiveLink + " " + "bg-highlight text-primary rounded-sm";
+  const activeLink = inactiveLink + " " + "bg-highlight text-black rounded-sm";
+  const inactiveIcon = "size-6";
+  const activeIcon = inactiveIcon + " " + "text-primary";
   const router = usePathname();
 
   async function signOutFunction() {
@@ -15,7 +16,7 @@ export default function NavBar() {
   }
 
   return (
-    <aside className="text-gray-500 p-4 mr-1 shrink-0">
+    <aside className="text-gray-500 p-4 mr-1 fixed w-full bg-bgGray h-full -left-full">
       <Link href="/" className="flex gap-2 mb-4">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -41,7 +42,7 @@ export default function NavBar() {
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="size-6"
+            className={router === "/" ? activeIcon : inactiveIcon}
           >
             <path
               strokeLinecap="round"
@@ -61,7 +62,7 @@ export default function NavBar() {
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="size-6"
+            className={router.includes("/products") ? activeIcon : inactiveIcon}
           >
             <path
               strokeLinecap="round"
@@ -81,7 +82,9 @@ export default function NavBar() {
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="size-6"
+            className={
+              router.includes("/categories") ? activeIcon : inactiveIcon
+            }
           >
             <path
               strokeLinecap="round"
@@ -101,7 +104,7 @@ export default function NavBar() {
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="size-6"
+            className={router.includes("/orders") ? activeIcon : inactiveIcon}
           >
             <path
               strokeLinecap="round"
@@ -121,7 +124,7 @@ export default function NavBar() {
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="size-6"
+            className={router.includes("/settings") ? activeIcon : inactiveIcon}
           >
             <path
               strokeLinecap="round"
