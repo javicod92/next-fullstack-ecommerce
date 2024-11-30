@@ -12,7 +12,7 @@ type ProductsType = {
   price?: string;
   images?: Array<string>;
   category?: string;
-  properties: Record<string, string>;
+  properties?: Record<string, string>;
 };
 
 type CategoryTypes = {
