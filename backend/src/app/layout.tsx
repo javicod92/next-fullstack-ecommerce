@@ -33,7 +33,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} antialiased`}>
-        <div className="bg-bgGray min-h-screen flex">
+        <div className="bg-bgGray min-h-screen flex flex-col">
           <NavBar />
           <main className="bg-white flex-grow p-4">{children}</main>
         </div>
