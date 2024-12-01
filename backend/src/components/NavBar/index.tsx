@@ -18,8 +18,8 @@ export default function NavBar() {
   }
 
   return (
-    <div className="">
-      <button className="p-2">
+    <div className="bg-bgGray">
+      <button className="block p-2 md:hidden">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -41,7 +41,7 @@ export default function NavBar() {
         className={
           (showSidebar ? "left-0" : "-left-full") +
           " " +
-          "text-gray-500 p-4 mr-1 fixed w-full bg-bgGray h-full transition-all ease-in-out z-10"
+          "text-gray-500 p-4 mr-1 top-0 fixed w-full h-full bg-bgGray transition-all ease-in-out z-10 md:static md:auto "
         }
       >
         <Link

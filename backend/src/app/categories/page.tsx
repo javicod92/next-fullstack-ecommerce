@@ -186,7 +186,7 @@ export default function CategoriesPage() {
                 <button
                   type="button"
                   onClick={() => removeProperty(index)}
-                  className="delete p-2 px-4 text-white rounded-lg"
+                  className="delete p-2 px-4 text-white rounded-sm"
                 >
                   Remove
                 </button>

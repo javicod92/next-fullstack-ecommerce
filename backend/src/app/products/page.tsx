@@ -25,7 +25,7 @@ export default function Products() {
     <div className="">
       <Link
         href="/products/new"
-        className="flex gap-1 bg-zinc-400 w-max py-1 px-2 rounded-md shadow-sm"
+        className="flex gap-1 bg-zinc-400 w-max py-1 px-2 rounded-sm shadow-sm"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -47,7 +47,7 @@ export default function Products() {
         <thead>
           <tr>
             <td>Product Name</td>
-            <td></td>
+            <td>Actions</td>
           </tr>
         </thead>
         <tbody>
@@ -55,7 +55,10 @@ export default function Products() {
             <tr key={product._id}>
               <td>{product.title}</td>
               <td>
-                <Link href={"/products/edit/" + product._id} className="edit">
+                <Link
+                  href={"/products/edit/" + product._id}
+                  className="edit text-white"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"

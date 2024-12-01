@@ -176,19 +176,25 @@ export default function NewProductForm({
         <legend>Properties</legend>
         {propertiesToFill.length > 0 ? (
           propertiesToFill.map((property) => (
-            <div key={property.name} className="flex gap-1">
-              <div>{property.name}: </div>
-              <select
-                className="!border !border-solid rounded-md"
-                value={productProperties[property.name]}
-                onChange={(e) => setProductProp(property.name, e.target.value)}
-              >
-                {property.values.map((value) => (
-                  <option key={value} value={value}>
-                    {value}
-                  </option>
-                ))}
-              </select>
+            <div key={property.name} className="">
+              <label>
+                {property.name[0].toUpperCase() + property.name.substring(1)}:{" "}
+              </label>
+              <div>
+                <select
+                  className="!border !border-solid rounded-md"
+                  value={productProperties[property.name]}
+                  onChange={(e) =>
+                    setProductProp(property.name, e.target.value)
+                  }
+                >
+                  {property.values.map((value) => (
+                    <option key={value} value={value}>
+                      {value}
+                    </option>
+                  ))}
+                </select>
+              </div>
             </div>
           ))
         ) : (
@@ -202,13 +208,13 @@ export default function NewProductForm({
             images.map((url, index) => (
               <div
                 key={url}
-                className="h-24"
+                className="h-24 p-2 bg-white shadow-sm rounded-sm border border-gray-200"
                 draggable
                 onDragStart={(e) => handleDragStart(e, index)}
                 onDragOver={handleDragOver}
                 onDrop={(e) => handleDrop(e, index)}
               >
-                <img src={url} alt="" className="rounded-lg" />
+                <img src={url} alt="" className="" />
               </div>
             ))}
           {isUploading && (
@@ -216,7 +222,7 @@ export default function NewProductForm({
               <Loader />
             </div>
           )}
-          <label className="w-24 h-24 cursor-pointer bg-zinc-200 flex  items-center justify-center gap-1 text-sm text-zinc-800 rounded-lg">
+          <label className="w-24 h-24 cursor-pointer bg-white shadow-sm flex flex-col items-center justify-center gap-1 text-sm text-primary rounded-sm border border-primary">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -231,7 +237,7 @@ export default function NewProductForm({
                 d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5m-13.5-9L12 3m0 0 4.5 4.5M12 3v13.5"
               />
             </svg>
-            <div>Upload</div>
+            <div>Add image</div>
             <input
               type="file"
               className="hidden"
