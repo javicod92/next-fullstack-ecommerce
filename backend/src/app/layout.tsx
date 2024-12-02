@@ -18,7 +18,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const session = await auth();
-  if (!session?.user) {
+  if (session?.user.role !== "admin") {
     return (
       <html lang="en">
         <body className={`${inter.className} antialiased`}>
