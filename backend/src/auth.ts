@@ -40,6 +40,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   session: {
     // Set the session duration in 1 hour
     maxAge: 24 * 60 * 60, // In seconds (86400 sec = 1 day)
+    strategy: "jwt",
   },
   jwt: {
     // Set the token expirations in 1 hour
