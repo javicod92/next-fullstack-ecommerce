@@ -26,7 +26,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
     async jwt({ token, user }) {
       if (user) {
-        token.role = user.role; // Actualiza el token con el rol más reciente al iniciar sesión
+        token.role = user.role;
       }
       return token;
     },
@@ -39,14 +39,15 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   },
   session: {
     // Set the session duration in 1 hour
-    maxAge: 60 * 60, // In seconds (3600 sec = 1 hour)
+    maxAge: 24 * 60 * 60, // In seconds (86400 sec = 1 day)
   },
   jwt: {
     // Set the token expirations in 1 hour
-    maxAge: 60 * 60, // In seconds (3600 sec = 1 hour)
+    maxAge: 24 * 60 * 60, // In seconds (86400 sec = 1 day)
   },
 });
 
+// Function used to protect pages and api routes
 export async function isAdmin() {
   const session = await auth();
   if (session?.user.role !== "admin") {
