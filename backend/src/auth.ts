@@ -1,7 +1,7 @@
 import NextAuth from "next-auth";
 import Google from "next-auth/providers/google";
 import { mongooseConnect } from "./lib/mongoose";
-import User from "./lib/User";
+import User from "./models/User";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [Google],
