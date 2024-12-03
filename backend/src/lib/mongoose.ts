@@ -12,12 +12,10 @@ let globalWithMongoose = global as typeof globalThis & {
 
 export function mongooseConnect() {
   if (mongoose.connection.readyState === 1) {
-    // Conexión ya lista
     return mongoose.connection.asPromise();
   }
 
   if (process.env.NODE_ENV === "development") {
-    // Use a  global conection en desarrollo para HMR
     if (!globalWithMongoose._mongooseConnection) {
       if (uri) {
         globalWithMongoose._mongooseConnection = mongoose.connect(uri);
@@ -26,7 +24,6 @@ export function mongooseConnect() {
     return globalWithMongoose._mongooseConnection;
   }
 
-  // Conexión única en producción
   if (uri) {
     return mongoose.connect(uri);
   }

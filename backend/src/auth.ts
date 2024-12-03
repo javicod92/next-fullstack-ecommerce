@@ -7,24 +7,33 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [Google],
   callbacks: {
     async signIn({ user }) {
-      await mongooseConnect();
+      try {
+        await mongooseConnect();
 
-      // First, search if the user exists or not in database
-      let existingUser = await User.findOne({ email: user.email });
+        // Check if user exists in database
+        let existingUser = await User.findOne({ email: user.email });
 
-      // If the user doesn't exist in database, create one.
-      if (!existingUser) {
-        existingUser = await User.create({
-          name: user.name,
-          email: user.email,
-          image: user.image,
-        });
+        // Create user if it doesn't exist
+        if (!existingUser) {
+          existingUser = await User.create({
+            name: user.name,
+            email: user.email,
+            image: user.image,
+            role: "user", // Default role for new users
+          });
+        }
+
+        // Attach role to the user object
+        user.role = existingUser.role;
+        return true;
+      } catch (error) {
+        console.error("Error in signIn callback:", error);
+        return false;
       }
-      user.role = existingUser.role;
-      return true;
     },
 
     async jwt({ token, user }) {
+      // Include role in the token if available
       if (user) {
         token.role = user.role;
       }
@@ -32,26 +41,31 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     },
 
     async session({ session, token }) {
+      // Include role in the session object
       session.user.role =
         token?.role && typeof token.role === "string" ? token.role : "user";
       return session;
     },
   },
   session: {
-    // Set the session duration in 1 hour
-    maxAge: 24 * 60 * 60, // In seconds (86400 sec = 1 day)
+    // Session duration
+    maxAge: 24 * 60 * 60, // 24 hours
     strategy: "jwt",
   },
   jwt: {
-    // Set the token expirations in 1 hour
-    maxAge: 24 * 60 * 60, // In seconds (86400 sec = 1 day)
+    // JWT expiration
+    maxAge: 24 * 60 * 60, // 24 hours
   },
 });
 
-// Function used to protect pages and api routes
 export async function isAdmin() {
-  const session = await auth();
-  if (session?.user.role !== "admin") {
-    throw "Unauthorized";
+  try {
+    const session = await auth();
+    if (!session?.user || session.user.role !== "admin") {
+      throw new Error("Unauthorized access");
+    }
+  } catch (error) {
+    console.error("Error in isAdmin:", error);
+    throw new Error("Unauthorized access");
   }
 }

@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { signOut } from "next-auth/react";
-import { useState } from "react";
+import { useContext } from "react";
+import { ContextStates } from "@/context/MenuContext";
 
 export default function NavBar() {
   const inactiveLink = "flex gap-2 p-1";
@@ -11,7 +12,7 @@ export default function NavBar() {
   const inactiveIcon = "size-6";
   const activeIcon = inactiveIcon + " " + "text-primary";
   const router = usePathname();
-  const [showSidebar, setShowSidebar] = useState<boolean>(false);
+  const { showSidebar, setShowSidebar } = useContext(ContextStates)!;
 
   async function signOutFunction() {
     await signOut();
@@ -19,29 +20,11 @@ export default function NavBar() {
 
   return (
     <div className="bg-bgGray">
-      <button className="block p-2 md:hidden">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={1.5}
-          stroke="currentColor"
-          className="size-6"
-          type="button"
-          onClick={() => setShowSidebar((prevState) => !prevState)}
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-          />
-        </svg>
-      </button>
       <aside
         className={
           (showSidebar ? "left-0" : "-left-full") +
           " " +
-          "text-gray-500 p-4 mr-1 top-0 fixed w-full h-full bg-bgGray transition-all ease-in-out z-10 md:static md:auto "
+          "text-gray-500 p-4 mr-1 fixed w-full h-full bg-bgGray transition-all ease-in-out z-10 md:static md:auto "
         }
       >
         <Link

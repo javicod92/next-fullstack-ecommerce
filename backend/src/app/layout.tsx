@@ -4,6 +4,8 @@ import { Inter } from "next/font/google";
 import type { Metadata } from "next";
 import { auth } from "@/auth";
 import "./globals.css";
+import TopBar from "@/components/TopBar";
+import MenuContext from "@/context/MenuContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -33,10 +35,13 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} antialiased`}>
-        <div className="bg-bgGray min-h-screen flex">
-          <NavBar />
-          <main className="flex-grow p-4">{children}</main>
-        </div>
+        <MenuContext>
+          <TopBar />
+          <div className="bg-bgGray min-h-screen flex">
+            <NavBar />
+            <main className="flex-grow p-4">{children}</main>
+          </div>
+        </MenuContext>
       </body>
     </html>
   );

@@ -1,5 +1,4 @@
 import { isAdmin } from "@/auth";
-import client from "@/lib/db";
 import { mongooseConnect } from "@/lib/mongoose";
 import { Product } from "@/models/Product";
 import { NextRequest, NextResponse } from "next/server";

@@ -74,7 +74,9 @@ export default function NewProductForm({
         await axios.post("/api/products", data);
       }
       router.push("/products");
-    } catch (error) {}
+    } catch (error) {
+      console.error("Unespected error:", error);
+    }
   }
 
   async function uploadImages(e: ChangeEvent<HTMLInputElement>) {

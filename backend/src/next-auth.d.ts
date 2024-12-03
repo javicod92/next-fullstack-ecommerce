@@ -1,6 +1,5 @@
 // next-auth.d.ts
-import NextAuth from "next-auth";
-import { DefaultSession, DefaultUser } from "next-auth";
+import { DefaultSession } from "next-auth";
 
 // Extiende el tipo `User` para incluir la propiedad `role`
 declare module "next-auth" {
