@@ -6,7 +6,7 @@ if (!uri) {
   throw new Error('Invalid/Missing environment variable: "MONGODB_URI"');
 }
 
-let globalWithMongoose = global as typeof globalThis & {
+const globalWithMongoose = global as typeof globalThis & {
   _mongooseConnection?: Promise<typeof mongoose>;
 };
 
