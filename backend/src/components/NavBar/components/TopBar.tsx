@@ -1,9 +1,9 @@
 "use client";
 
-import { ContextStates } from "@/context/MenuContext";
+import { ContextStates } from "../index";
 import { useContext } from "react";
 
-export default function TopBar() {
+export function TopBar() {
   const { setShowSidebar } = useContext(ContextStates)!;
 
   return (
