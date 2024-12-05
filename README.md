@@ -1,6 +1,8 @@
 # Next Fullstack e-commerce
 
-This project is a complete server-side platform that allows administrators to add or modify page content, and allows users to consume its content.
+This project is a complete e-commerce platform with a focus on efficient administration and user experience. It has two main sections:
+- **Administrator panel (Backend)**: Exclusively for administrators, it allows only administrators to add, modify and delete products and categories on the site
+- **User section (Frontend)**: Designed for users to browse and consume the products published in the store
 
 ## 🛠️ Used technologies
 **Backend**
