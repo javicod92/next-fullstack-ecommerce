@@ -1,8 +1,9 @@
 "use client";
 
+import NotificationContext from "@/context/NotificationContext";
 import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 type ProductsType = {
   _id: string;
@@ -15,7 +16,7 @@ export default function DeleteProductPage() {
   const router = useRouter();
   const [productInfo, setProductInfo] = useState<ProductsType | null>(null);
   const { id } = useParams();
-  console.log(id);
+  const { showNotification } = useContext(NotificationContext);
 
   useEffect(() => {
     axios.get("/api/products?id=" + id).then((response) => {
@@ -28,8 +29,21 @@ export default function DeleteProductPage() {
   }
 
   async function deleteProduct() {
-    await axios.delete("/api/products?id=" + id);
-    goBack();
+    try {
+      await axios.delete("/api/products?id=" + id);
+      goBack();
+      showNotification({
+        open: true,
+        status: "success",
+        msj: "Product successfully deleted",
+      });
+    } catch {
+      showNotification({
+        open: true,
+        status: "error",
+        msj: "Error in deleting the product",
+      });
+    }
   }
 
   return (

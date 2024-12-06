@@ -1,8 +1,9 @@
 "use client";
 
 import Popup from "@/components/PopUp";
+import NotificationContext from "@/context/NotificationContext";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 type CategoriesProps = {
   _id: string;
@@ -26,6 +27,7 @@ export default function CategoriesPage() {
   const [parentCategory, setParentCategory] = useState<string | undefined>("");
   const [categories, setCategories] = useState<Array<CategoriesProps>>([]);
   const [properties, setProperties] = useState<Array<PropertiesProps>>([]);
+  const { showNotification } = useContext(NotificationContext);
 
   useEffect(() => {
     fetchCategories();
@@ -48,10 +50,39 @@ export default function CategoriesPage() {
       })),
     };
     if (editedCategory) {
-      await axios.put("/api/categories", { ...data, _id: editedCategory._id });
-      setEditedCategory(null);
+      try {
+        await axios.put("/api/categories", {
+          ...data,
+          _id: editedCategory._id,
+        });
+        setEditedCategory(null);
+        showNotification({
+          open: true,
+          status: "success",
+          msj: "The category has been successfully updated",
+        });
+      } catch {
+        showNotification({
+          open: true,
+          status: "error",
+          msj: "Error in updating category",
+        });
+      }
     } else {
-      await axios.post("/api/categories", data);
+      try {
+        await axios.post("/api/categories", data);
+        showNotification({
+          open: true,
+          status: "success",
+          msj: "The category has been successfully created",
+        });
+      } catch {
+        showNotification({
+          open: true,
+          status: "error",
+          msj: "Error in creating the category",
+        });
+      }
     }
     setName("");
     setParentCategory("");
@@ -77,9 +108,22 @@ export default function CategoriesPage() {
 
   async function confirmDelete() {
     if (categoryToDelete) {
-      await axios.delete("/api/categories/?_id=" + categoryToDelete._id);
+      try {
+        await axios.delete("/api/categories/?_id=" + categoryToDelete._id);
+        fetchCategories();
+        showNotification({
+          open: true,
+          status: "success",
+          msj: "Category successfully deleted",
+        });
+      } catch {
+        showNotification({
+          open: true,
+          status: "error",
+          msj: "Error in deleting the category",
+        });
+      }
       setCategoryToDelete(null);
-      fetchCategories();
     }
   }
 

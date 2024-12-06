@@ -5,6 +5,10 @@ import { auth } from "@/auth";
 import "./globals.css";
 import { NavBar } from "@/components/NavBar";
 import { SideBar, TopBar } from "@/components/NavBar/components";
+import { Suspense } from "react";
+import Loading from "./loading";
+import { Notification } from "@/components/Notification";
+import { NotificationProvider } from "@/context/NotificationContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,13 +28,17 @@ export default async function RootLayout({
     <html lang="en">
       <body className={`${inter.className} antialiased`}>
         {session?.user.role === "admin" ? (
-          <NavBar>
-            <TopBar />
-            <div className="bg-bgGray min-h-screen flex">
-              <SideBar />
-              <main className="flex-grow p-4">{children}</main>
-            </div>
-          </NavBar>
+          <NotificationProvider>
+            <NavBar>
+              <TopBar />
+              <div className="bg-bgGray min-h-screen flex">
+                <SideBar />
+                <Suspense fallback={<Loading />}>
+                  <main className="flex-grow p-4">{children}</main>
+                </Suspense>
+              </div>
+            </NavBar>
+          </NotificationProvider>
         ) : (
           <div className="bg-bgGray w-screen h-screen flex items-center justify-center">
             <LoginButton />

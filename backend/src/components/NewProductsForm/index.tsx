@@ -1,8 +1,9 @@
 "use client";
-import { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import { ChangeEvent, FormEvent, useContext, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Loader } from "../Loader";
 import axios from "axios";
+import NotificationContext from "@/context/NotificationContext";
 // import Image from "next/image";
 
 type ProductsType = {
@@ -48,6 +49,7 @@ export default function NewProductForm({
   const [isUploading, setIsUploading] = useState(false);
   const router = useRouter();
   const [categories, setCategories] = useState<Array<CategoryTypes>>([]);
+  const { showNotification } = useContext(NotificationContext);
 
   useEffect(() => {
     axios.get("/api/categories").then((result) => {
@@ -73,8 +75,18 @@ export default function NewProductForm({
         // Create Product
         await axios.post("/api/products", data);
       }
+      showNotification({
+        open: true,
+        msj: "The action was completed successfully",
+        status: "success",
+      });
       router.push("/products");
     } catch (error) {
+      showNotification({
+        open: true,
+        msj: "Error in completing the action",
+        status: "error",
+      });
       console.error("Unespected error:", error);
     }
   }

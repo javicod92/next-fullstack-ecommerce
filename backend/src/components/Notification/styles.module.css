@@ -1,0 +1,62 @@
+.notification {
+  position: fixed;
+  top: 0;
+  right: 0;
+  margin-top: 1rem;
+  z-index: 5;
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  animation: start 0.5s forwards;
+
+  height: 60px;
+  width: fit-content;
+  padding: 0.6rem 2rem;
+  transition: 0.3s;
+
+  /* border: 0.5px solid #878787; */
+  border-radius: 5px 0 0 5px;
+  border-right: none;
+  outline: 0.5px solid transparent;
+
+  /* backdrop-filter: blur(5px) saturate(180%);
+  -webkit-backdrop-filter: blur(5px) saturate(180%); */
+  background-color: #e0e0e0;
+  color: rgb(49, 49, 49);
+  box-shadow: 2px 2px 10px 5px #383838;
+}
+
+.statusBorder {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 6px;
+}
+
+.notification.success {
+  outline: 1.5px solid #c6f51f;
+}
+
+.notification.error {
+  outline: 1.5px solid #da4008;
+}
+
+.statusBorder.success {
+  background-color: #c6f51f;
+}
+
+.statusBorder.error {
+  background-color: #da4008;
+}
+
+@keyframes start {
+  from {
+    right: -100%;
+  }
+
+  to {
+    right: 0%;
+  }
+}
