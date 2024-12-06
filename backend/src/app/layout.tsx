@@ -7,7 +7,6 @@ import { NavBar } from "@/components/NavBar";
 import { SideBar, TopBar } from "@/components/NavBar/components";
 import { Suspense } from "react";
 import Loading from "./loading";
-import { Notification } from "@/components/Notification";
 import { NotificationProvider } from "@/context/NotificationContext";
 
 const inter = Inter({ subsets: ["latin"] });
