@@ -59,7 +59,7 @@ table.basic a {
 }
 
 .delete {
-  @apply bg-red-200 text-red-600 rounded-sm;
+  @apply bg-red-200 text-red-950 rounded-sm;
 }
 
 .btn-red,
