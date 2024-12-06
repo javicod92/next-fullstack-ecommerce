@@ -12,6 +12,7 @@ export function TopBar() {
         className="p-2"
         type="button"
         onClick={() => setShowSidebar((prevState) => !prevState)}
+        aria-label="Menu"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
