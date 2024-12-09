@@ -4,7 +4,7 @@ export default function Header() {
   return (
     <header className="bg-zinc-800 text-white flex justify-center">
       {/* The div below is the component center */}
-      <div className="max-w-[800px] grow p-5">
+      <div className="Center">
         <div className="flex justify-between">
           <Link href={"/"}>Ecommerce</Link>
           <nav className="text-gray-300 flex gap-4">
