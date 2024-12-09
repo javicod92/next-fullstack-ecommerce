@@ -17,7 +17,7 @@ export default function Featured() {
             <img
               src="D_NQ_NP_830299-MLA79635564046_102024-O.webp"
               alt="Product"
-              className="max-w-full"
+              className="max-w-full contrast-125 drop-shadow-lg"
             />
           </div>
         </div>
