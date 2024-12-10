@@ -1,19 +1,18 @@
 import Image from "next/image";
 
-export default function Featured() {
+export default function Featured({
+  product,
+}: {
+  product: Record<string, string>;
+}) {
   return (
     <div className="flex justify-center bg-zinc-800 text-white py-[50px]">
       {/* The div below is the component center */}
       <div className="Center">
         <div className="grid grid-cols-2 gap-10">
           <div className="flex flex-col justify-center">
-            <h1>Pro anywhere</h1>
-            <p className="text-[#aaa] mt-4">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quod
-              tenetur eaque nam, sint necessitatibus eius quia sapiente.
-              Sapiente id voluptates qui ipsam, voluptatibus quibusdam porro
-              iste quisquam cum eligendi illum.
-            </p>
+            <h1>{product?.title}</h1>
+            <p className="text-[#aaa] mt-4">{product?.description}</p>
             <div className="mt-6 gap-2 flex">
               <button className="OutlineBtn">Read more</button>
               <button className="PrimaryBtn inline-flex gap-1 items-center">
@@ -31,7 +30,7 @@ export default function Featured() {
           </div>
           <div className="flex flex-col justify-center">
             <Image
-              src="/D_NQ_NP_830299-MLA79635564046_102024-O.webp"
+              src={product?.images[7]}
               alt="Product"
               width={500}
               height={500}
