@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Header() {
   return (
-    <header className="bg-zinc-800 text-white flex justify-center">
+    <header className="bg-zinc-900 text-white flex justify-center">
       {/* The div below is the component center */}
       <div className="Center">
         <div className="flex justify-between">
