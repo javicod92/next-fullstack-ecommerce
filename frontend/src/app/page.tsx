@@ -1,19 +1,26 @@
 import Featured from "@/components/Featured";
+import NewProducts from "@/components/NewProducts";
 import { mongooseConnect } from "@/lib/mongoose";
 import { Product } from "@/models/Product";
 
-export default async function HomePage() {
-  const productData = await getServerSideProps();
-  return (
-    <div>
-      <Featured product={productData} />
-    </div>
-  );
+async function getServerSideProps() {
+  const featuredProductId = "6746494304ffa42d29c9cda5";
+  await mongooseConnect();
+  const featuredProduct = await Product.findById(featuredProductId);
+  const newProducts = await Product.find({}, null, {
+    sort: { _id: -1 },
+    limit: 10,
+  });
+  return { featuredProduct, newProducts };
 }
 
-async function getServerSideProps() {
-  const featuredProduct = "6746494304ffa42d29c9cda5";
-  await mongooseConnect();
-  const product = await Product.findById(featuredProduct);
-  return product;
+export default async function HomePage() {
+  const productData = await getServerSideProps();
+  console.log(productData.newProducts);
+  return (
+    <div>
+      <Featured product={productData.featuredProduct} />
+      <NewProducts products={productData.newProducts} />
+    </div>
+  );
 }
