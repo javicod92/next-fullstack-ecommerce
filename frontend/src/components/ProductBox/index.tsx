@@ -10,8 +10,8 @@ export default function ProductBox({
       <div className="bg-[#fff] shadow-md rounded-sm p-5 h-[150px] flex justify-center items-center">
         <img className="max-w-full max-h-full" src={images[0]} alt="" />
       </div>
-      <h2 className="font-normal text-base">{title}</h2>
-      <button className="PrimaryBtn inline-flex gap-1 items-center text-white">
+      <h2 className="font-normal text-base truncate max-w-full">{title}</h2>
+      <button className="PrimarySmallBtn inline-flex gap-1 items-center text-white">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"

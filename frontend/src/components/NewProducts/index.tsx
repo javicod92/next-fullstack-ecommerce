@@ -5,7 +5,6 @@ export default function NewProducts({
 }: {
   products: Array<Record<string, string>>;
 }) {
-  console.log({ ...products[0] });
   return (
     <div className="flex justify-center">
       <div className="Center">
