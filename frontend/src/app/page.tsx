@@ -19,7 +19,6 @@ async function getServerSideProps() {
 
 export default async function HomePage() {
   const productData = await getServerSideProps();
-  console.log(productData.newProducts);
   return (
     <div>
       <Featured product={productData.featuredProduct} />

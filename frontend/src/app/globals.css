@@ -23,7 +23,7 @@ p {
 }
 
 .PrimarySmallBtn {
-  @apply bg-[#5542F6]  py-1 px-2 rounded-sm text-sm;
+  @apply bg-[#5542F6] py-1 px-2 rounded-sm text-sm;
 }
 
 .DefaultBtn {
