@@ -11,7 +11,10 @@ async function getServerSideProps() {
     sort: { _id: -1 },
     limit: 10,
   });
-  return { featuredProduct, newProducts };
+  return {
+    featuredProduct: JSON.parse(JSON.stringify(featuredProduct)),
+    newProducts: JSON.parse(JSON.stringify(newProducts)),
+  };
 }
 
 export default async function HomePage() {

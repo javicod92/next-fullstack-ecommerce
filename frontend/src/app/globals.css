@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  background-color: #eee;
+}
+
 h1 {
   @apply text-5xl font-normal;
 }
