@@ -9,7 +9,7 @@ async function getServerSideProps() {
   const featuredProduct = await Product.findById(featuredProductId);
   const newProducts = await Product.find({}, null, {
     sort: { _id: -1 },
-    limit: 10,
+    limit: 12,
   });
   return {
     featuredProduct: JSON.parse(JSON.stringify(featuredProduct)),
