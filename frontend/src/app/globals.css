@@ -10,6 +10,10 @@ h1 {
   @apply text-5xl font-normal;
 }
 
+h2 {
+  @apply text-2xl font-normal;
+}
+
 p {
   @apply text-sm font-light;
 }
@@ -23,7 +27,7 @@ p {
 }
 
 .PrimarySmallBtn {
-  @apply bg-[#5542F6] py-1 px-2 rounded-sm text-sm;
+  @apply bg-transparent border border-[#88874c] text-[#88874c] font-bold py-1 px-2 rounded-md text-sm;
 }
 
 .DefaultBtn {

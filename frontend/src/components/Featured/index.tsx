@@ -20,7 +20,7 @@ export default function Featured({
               </Link>
               <Link
                 href={"/"}
-                className="PrimaryBtn inline-flex gap-1 items-center"
+                className="DefaultBtn inline-flex gap-1 items-center"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
