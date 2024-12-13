@@ -10,10 +10,7 @@ export default function Featured({
 }: {
   product: Record<string, string>;
 }) {
-  const { setCartProducts } = useContext(CartContext)!;
-  function addFeaturedToCart() {
-    setCartProducts((prev) => [...prev, product._id]);
-  }
+  const { addProduct } = useContext(CartContext)!;
 
   return (
     <div className="flex justify-center bg-zinc-900 text-white py-[50px]">
@@ -28,7 +25,7 @@ export default function Featured({
                 Read more
               </Link>
               <button
-                onClick={addFeaturedToCart}
+                onClick={() => addProduct(product._id)}
                 className="DefaultBtn inline-flex gap-1 items-center"
               >
                 <svg

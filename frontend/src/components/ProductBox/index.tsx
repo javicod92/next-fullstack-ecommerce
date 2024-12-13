@@ -1,4 +1,8 @@
+"use client";
+
+import { CartContext } from "@/context/CartContextProvider";
 import Link from "next/link";
+import { useContext } from "react";
 
 export default function ProductBox({
   _id,
@@ -7,7 +11,9 @@ export default function ProductBox({
   price,
   images,
 }: Record<string, string>) {
+  const { addProduct } = useContext(CartContext)!;
   const url = "/product/" + _id;
+
   return (
     <div>
       <Link
@@ -22,7 +28,10 @@ export default function ProductBox({
         </Link>
         <div className="flex items-center justify-between mt-[2px]">
           <div className="font-bold text-lg">${price}</div>
-          <button className="PrimarySmallBtn inline-flex gap-1 items-center text-white">
+          <button
+            onClick={() => addProduct(_id)}
+            className="PrimarySmallBtn inline-flex gap-1 items-center text-white"
+          >
             {/* <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
