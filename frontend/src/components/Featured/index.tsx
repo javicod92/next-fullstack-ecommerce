@@ -13,7 +13,8 @@ export default function Featured({
   const { addProduct } = useContext(CartContext)!;
 
   return (
-    <div className="flex justify-center bg-zinc-900 text-white py-[50px]">
+    <div className="relative flex justify-center bg-zinc-900 text-white py-[50px]">
+      <div className="w-full h-[300px] absolute bg-gradient-to-b from-zinc-900 from-20% to-transparent top-full -z-10"></div>
       {/* The div below is the component center */}
       <div className="Center">
         <div className="grid grid-cols-2 gap-10">
