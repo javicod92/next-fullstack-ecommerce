@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, SetStateAction, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 type ContextTypes = {
   cartProducts: Array<string>;
@@ -15,6 +15,22 @@ export default function CartContextProvider({
   children: React.ReactNode;
 }) {
   const [cartProducts, setCartProducts] = useState<Array<string>>([]);
+
+  useEffect(() => {
+    //This useEffect verifies and ensures that code only runs in a client side, because localStorage only runs in client side
+    if (typeof window !== "undefined") {
+      const storedCart = localStorage.getItem("cart");
+      if (storedCart) {
+        setCartProducts(JSON.parse(storedCart));
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    if (cartProducts?.length > 0) {
+      localStorage.setItem("cart", JSON.stringify(cartProducts));
+    }
+  }, [cartProducts]);
 
   function addProduct(productId: string) {
     setCartProducts((prev) => [...prev, productId]);
