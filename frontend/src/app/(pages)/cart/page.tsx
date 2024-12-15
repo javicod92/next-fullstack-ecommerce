@@ -20,22 +20,47 @@ export default function CartPage() {
     <div className="flex justify-center">
       <div className="Center">
         <div className="grid grid-cols-[1.2fr,.8fr] gap-4 mt-10 ">
-          <div className="bg-[#fff] rounded-[10px] p-8">
+          <div className="bg-[#fff] rounded-md p-8">
+            <h2>Cart</h2>
             {!cartProducts?.length && <div>Your cart is empty</div>}
             {products?.length > 0 && (
-              <div>
-                <h2>Cart</h2>
-                {products.map((product) => (
-                  <div key={product._id}>
-                    {product.title}:{" "}
-                    {cartProducts.filter((id) => id === product._id).length}
-                  </div>
-                ))}
-              </div>
+              <table className="StyledTable">
+                <thead>
+                  <tr>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {products.map((product) => (
+                    <tr key={product._id}>
+                      <td className="py-2">
+                        <div className="w-[100px] h-[100px] p-2 border shadow-md rounded-md flex items-center justify-center">
+                          <img
+                            className="max-w-[full] max-h-full"
+                            src={product.images[0]}
+                            alt={product.title}
+                          />
+                        </div>
+                        {product.title}
+                      </td>
+                      <td>
+                        {cartProducts.filter((id) => id === product._id).length}
+                      </td>
+                      <td>
+                        $
+                        {cartProducts.filter((id) => id === product._id)
+                          .length * Number(product.price)}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             )}
           </div>
           {!!cartProducts?.length && (
-            <div className="bg-[#fff] rounded-[10px] p-8">
+            <div className="bg-[#fff] rounded-md p-8">
               <h2>Order information</h2>
               <input type="text" placeholder="Adress" />
               <input type="text" placeholder="Adress 2" />
