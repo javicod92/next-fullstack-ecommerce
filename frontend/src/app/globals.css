@@ -34,6 +34,14 @@ p {
   @apply bg-[#455b70] text-white;
 }
 
+.PrimarySmallBtnBlack {
+  @apply transition-colors bg-black border text-white font-normal py-1 px-2 rounded-md text-sm;
+}
+
+.PrimarySmallBtnBlack:hover {
+  @apply bg-white text-black;
+}
+
 .DefaultBtn {
   @apply bg-white text-black py-2 px-5 rounded-sm;
 }
