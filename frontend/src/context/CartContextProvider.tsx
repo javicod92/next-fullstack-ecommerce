@@ -5,6 +5,7 @@ import { createContext, useEffect, useState } from "react";
 type ContextTypes = {
   cartProducts: Array<string>;
   addProduct(productId: string): void;
+  removeProduct(productId: string): void;
 };
 
 export const CartContext = createContext<ContextTypes | null>(null);
@@ -37,8 +38,18 @@ export default function CartContextProvider({
     setCartProducts((prev) => [...prev, productId]);
   }
 
+  function removeProduct(productId: string) {
+    setCartProducts((prev) => {
+      const position = prev.indexOf(productId);
+      if (position !== -1) {
+        return prev.filter((value, index) => index !== position);
+      }
+      return prev;
+    });
+  }
+
   return (
-    <CartContext.Provider value={{ cartProducts, addProduct }}>
+    <CartContext.Provider value={{ cartProducts, addProduct, removeProduct }}>
       {children}
     </CartContext.Provider>
   );

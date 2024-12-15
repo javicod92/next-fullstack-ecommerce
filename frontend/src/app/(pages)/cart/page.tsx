@@ -5,8 +5,9 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 
 export default function CartPage() {
-  const { cartProducts } = useContext(CartContext)!;
+  const { cartProducts, addProduct, removeProduct } = useContext(CartContext)!;
   const [products, setProducts] = useState<Array<Record<string, string>>>([]);
+  let total = 0;
 
   useEffect(() => {
     if (cartProducts.length > 0) {
@@ -15,6 +16,19 @@ export default function CartPage() {
       });
     }
   }, [cartProducts]);
+
+  function moreOfThisProduct(id: string) {
+    addProduct(id);
+  }
+
+  function lessOfThisProduct(id: string) {
+    removeProduct(id);
+  }
+
+  for (const productId of cartProducts) {
+    const price = Number(products.find((p) => p._id === productId)?.price || 0);
+    total += price;
+  }
 
   return (
     <div className="flex justify-center">
@@ -35,18 +49,37 @@ export default function CartPage() {
                 <tbody>
                   {products.map((product) => (
                     <tr key={product._id}>
-                      <td className="py-2">
-                        <div className="w-[100px] h-[100px] p-2 border shadow-md rounded-md flex items-center justify-center">
+                      <td className="py-2 text-sm">
+                        <div className="w-[100px] h-[100px] p-2 border shadow-md rounded-md flex items-center justify-center mb-2">
                           <img
                             className="max-w-[full] max-h-full"
                             src={product.images[0]}
                             alt={product.title}
                           />
                         </div>
-                        {product.title}
+                        <p>{product.title}</p>
                       </td>
-                      <td>
-                        {cartProducts.filter((id) => id === product._id).length}
+                      <td className="p-4">
+                        <div className="text-nowrap border rounded-lg overflow-hidden">
+                          <button
+                            className="DefaultSmallBtn"
+                            onClick={() => lessOfThisProduct(product._id)}
+                          >
+                            -
+                          </button>
+                          <span className="px-2">
+                            {
+                              cartProducts.filter((id) => id === product._id)
+                                .length
+                            }
+                          </span>
+                          <button
+                            className="DefaultSmallBtn"
+                            onClick={() => moreOfThisProduct(product._id)}
+                          >
+                            +
+                          </button>
+                        </div>
                       </td>
                       <td>
                         $
@@ -55,6 +88,11 @@ export default function CartPage() {
                       </td>
                     </tr>
                   ))}
+                  <tr>
+                    <td>TOTAL</td>
+                    <td></td>
+                    <td>${total}</td>
+                  </tr>
                 </tbody>
               </table>
             )}

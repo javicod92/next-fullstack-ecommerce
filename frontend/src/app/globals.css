@@ -46,6 +46,10 @@ p {
   @apply bg-white text-black py-2 px-5 rounded-sm;
 }
 
+.DefaultSmallBtn {
+  @apply text-black p-2 rounded-sm;
+}
+
 .OutlineBtn {
   @apply bg-transparent text-white border border-white py-2 px-5 rounded-sm;
 }
