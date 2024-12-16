@@ -1,5 +1,6 @@
 "use client";
 
+import Form from "@/components/Form";
 import { CartContext } from "@/context/CartContextProvider";
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
@@ -14,6 +15,8 @@ export default function CartPage() {
       axios.post("/api/cart", { ids: cartProducts }).then((response) => {
         setProducts(response.data);
       });
+    } else {
+      setProducts([]);
     }
   }, [cartProducts]);
 
@@ -98,14 +101,57 @@ export default function CartPage() {
             )}
           </div>
           {!!cartProducts?.length && (
-            <div className="bg-[#fff] rounded-md p-8">
-              <h2>Order information</h2>
-              <input type="text" placeholder="Adress" />
-              <input type="text" placeholder="Adress 2" />
-              <button className="PrimarySmallBtnBlack w-full">
-                Continue to payment
-              </button>
-            </div>
+            <Form
+              className="bg-[#fff] rounded-md p-8 text-sm"
+              title="Order information"
+            >
+              <div className="mt-4">
+                <Form.Input
+                  type="text"
+                  name="name"
+                  placeholder="Name"
+                  required
+                />
+                <Form.Input
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  required
+                />
+                <div className="flex gap-1">
+                  <Form.Input
+                    type="text"
+                    name="city"
+                    placeholder="City"
+                    required
+                  />
+                  <Form.Input
+                    type="number"
+                    name="postalCode"
+                    placeholder="Postal Code"
+                    required
+                  />
+                </div>
+                <Form.Input
+                  type="text"
+                  name="streetAdress"
+                  placeholder="Street Adress"
+                  required
+                />
+                <Form.Input
+                  type="text"
+                  name="country"
+                  placeholder="Country"
+                  required
+                />
+                <Form.Button
+                  type="submit"
+                  className="PrimarySmallBtnBlack w-full"
+                >
+                  Continue to payment
+                </Form.Button>
+              </div>
+            </Form>
           )}
         </div>
       </div>

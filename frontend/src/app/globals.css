@@ -35,7 +35,7 @@ p {
 }
 
 .PrimarySmallBtnBlack {
-  @apply transition-colors bg-black border text-white font-normal py-1 px-2 rounded-md text-sm;
+  @apply transition-colors bg-black border text-white font-normal py-2 px-2 rounded-md;
 }
 
 .PrimarySmallBtnBlack:hover {
