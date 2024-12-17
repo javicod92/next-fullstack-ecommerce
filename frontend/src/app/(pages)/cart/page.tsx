@@ -2,12 +2,16 @@
 
 import Form from "@/components/Form";
 import { CartContext } from "@/context/CartContextProvider";
+import { useFetch } from "@/hooks/useFetch";
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
+
+type FormValues = Record<string, string>;
 
 export default function CartPage() {
   const { cartProducts, addProduct, removeProduct } = useContext(CartContext)!;
   const [products, setProducts] = useState<Array<Record<string, string>>>([]);
+  const useFetchData = useFetch();
   let total = 0;
 
   useEffect(() => {
@@ -19,6 +23,11 @@ export default function CartPage() {
       setProducts([]);
     }
   }, [cartProducts]);
+
+  async function formSubmit(formValues: FormValues) {
+    const formData = { ...formValues, products: cartProducts };
+    await useFetchData({ endpoint: "checkout", formData });
+  }
 
   function moreOfThisProduct(id: string) {
     addProduct(id);
@@ -104,6 +113,7 @@ export default function CartPage() {
             <Form
               className="bg-[#fff] rounded-md p-8 text-sm"
               title="Order information"
+              onSubmitForm={formSubmit}
             >
               <div className="mt-4">
                 <Form.Input
