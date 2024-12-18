@@ -2,7 +2,6 @@
 
 import Form from "@/components/Form";
 import { CartContext } from "@/context/CartContextProvider";
-import { useFetch } from "@/hooks/useFetch";
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 
@@ -11,7 +10,6 @@ type FormValues = Record<string, string>;
 export default function CartPage() {
   const { cartProducts, addProduct, removeProduct } = useContext(CartContext)!;
   const [products, setProducts] = useState<Array<Record<string, string>>>([]);
-  const useFetchData = useFetch();
   let total = 0;
 
   useEffect(() => {
@@ -26,7 +24,8 @@ export default function CartPage() {
 
   async function formSubmit(formValues: FormValues) {
     const formData = { ...formValues, products: cartProducts };
-    await useFetchData({ endpoint: "checkout", formData });
+    const response = await axios.post("/api/checkout", formData);
+    console.log(response.data);
   }
 
   function moreOfThisProduct(id: string) {
