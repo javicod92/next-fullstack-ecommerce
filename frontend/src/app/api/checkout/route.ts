@@ -5,7 +5,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export function GET() {
   return NextResponse.json(
-    { message: "GET is not authorized" },
+    { message: "GET method is not authorized" },
     { status: 400 }
   );
 }
