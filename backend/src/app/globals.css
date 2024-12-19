@@ -75,3 +75,64 @@ table.basic a {
 .btn-default {
   @apply bg-gray-200;
 }
+
+/* Contenedor principal */
+.skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  width: 100%; /* Ancho del 100% del contenedor */
+  max-width: 100%; /* Evita que desborde */
+  box-sizing: border-box;
+}
+
+/* Título (100% ancho) */
+.title {
+  width: 100%; /* Se adapta al ancho del contenedor */
+  height: 30px;
+  background: linear-gradient(90deg, #e0e0e0 25%, #f8f8f8 50%, #e0e0e0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+}
+
+/* Tabla */
+.table {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%; /* Tabla ocupa todo el ancho */
+}
+
+/* Filas de la tabla */
+.row {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+/* Celdas responsivas */
+.cell {
+  flex: 1; /* Cada celda ocupa el mismo espacio */
+  height: 20px;
+  background: linear-gradient(90deg, #e0e0e0 25%, #f8f8f8 50%, #e0e0e0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+}
+
+/* Encabezados más altos */
+.header .cell {
+  height: 25px;
+}
+
+/* Animación shimmer */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
