@@ -69,3 +69,63 @@ p {
 .StyledTable td {
   border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
+
+/* This styles are used for Successfully component animation */
+.success-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  height: 100svh;
+  overflow: hidden;
+  background: transparent;
+}
+
+.success-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100vw;
+  height: 100vh;
+  background-color: #07a954; /* Verde lima */
+  clip-path: circle(0%);
+  transform: translate(-50%, -50%);
+  animation: expand-circle 1s ease-in-out forwards;
+}
+
+.success-message {
+  color: white;
+  position: absolute;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  animation: fade-in 0.5s ease-in-out 1s forwards;
+}
+
+/* Animación para expandir el círculo */
+@keyframes expand-circle {
+  from {
+    clip-path: circle(0%);
+  }
+  to {
+    clip-path: circle(100%);
+  }
+}
+
+/* Animación para el mensaje */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

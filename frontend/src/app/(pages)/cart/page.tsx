@@ -1,6 +1,7 @@
 "use client";
 
 import Form from "@/components/Form";
+import Successfully from "@/components/Successfully";
 import { CartContext } from "@/context/CartContextProvider";
 import axios from "axios";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -49,34 +50,35 @@ export default function CartPage() {
   }
 
   if (isSuccessPage) {
-    return (
-      <div className="flex justify-center">
-        <div className="Center">
-          <div className="bg-[#fff] rounded-md p-8 flex items-center gap-4">
-            <div className="rounded-full border p-4 bg-lime-600 text-white">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={4}
-                stroke="currentColor"
-                className="size-6"
-              >
-                <path
-                  strokeLinecap="square"
-                  strokeLinejoin="round"
-                  d="m4.5 12.75 6 6 9-13.5"
-                />
-              </svg>
-            </div>
-            <div>
-              <h2>Thanks for your order</h2>
-              <p>We will email you when your order will be sent.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
+    // return (
+    //   <div className="flex justify-center">
+    //     <div className="Center">
+    //       <div className="bg-[#fff] rounded-md p-8 flex items-center gap-4">
+    //         <div className="rounded-full border p-4 bg-lime-600 text-white">
+    //           <svg
+    //             xmlns="http://www.w3.org/2000/svg"
+    //             fill="none"
+    //             viewBox="0 0 24 24"
+    //             strokeWidth={4}
+    //             stroke="currentColor"
+    //             className="size-6"
+    //           >
+    //             <path
+    //               strokeLinecap="square"
+    //               strokeLinejoin="round"
+    //               d="m4.5 12.75 6 6 9-13.5"
+    //             />
+    //           </svg>
+    //         </div>
+    //         <div>
+    //           <h2>Thanks for your order</h2>
+    //           <p>We will email you when your order will be sent.</p>
+    //         </div>
+    //       </div>
+    //     </div>
+    //   </div>
+    // );
+    return <Successfully />;
   }
 
   return (
