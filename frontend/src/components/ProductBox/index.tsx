@@ -27,7 +27,7 @@ export default function ProductBox({
           <h2 className="font-normal text-base truncate max-w-full">{title}</h2>
         </Link>
         <div className="flex items-center justify-between mt-[2px]">
-          <div className="font-bold text-lg">${price}</div>
+          <div className="font-bold text-lg font-[Viga]">${price}</div>
           <button
             onClick={() => addProduct(_id)}
             className="PrimarySmallBtn inline-flex gap-1 items-center text-white"

@@ -14,7 +14,7 @@ export default function Featured({
 
   return (
     <div className="relative flex justify-center bg-zinc-900 text-white py-[25px]">
-      <div className="w-full h-[300px] absolute bg-gradient-to-b from-zinc-900 from-40% to-transparent top-full -z-10"></div>
+      <div className="w-full h-[300px] absolute bg-gradient-to-b from-zinc-900 from-40% to-80% to-transparent top-full -z-10"></div>
       {/* The div below is the component center */}
       <div className="Center">
         <div className="grid grid-cols-2 gap-10">
