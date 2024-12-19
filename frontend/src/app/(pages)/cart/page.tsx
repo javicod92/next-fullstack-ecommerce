@@ -3,6 +3,7 @@
 import Form from "@/components/Form";
 import { CartContext } from "@/context/CartContextProvider";
 import axios from "axios";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 
 type FormValues = Record<string, string>;
@@ -10,6 +11,9 @@ type FormValues = Record<string, string>;
 export default function CartPage() {
   const { cartProducts, addProduct, removeProduct } = useContext(CartContext)!;
   const [products, setProducts] = useState<Array<Record<string, string>>>([]);
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const isSuccessPage = searchParams.get("success") === "1";
   let total = 0;
 
   useEffect(() => {
@@ -27,7 +31,7 @@ export default function CartPage() {
     const response = await axios.post("/api/checkout", formData);
 
     if (response.data.url) {
-      window.location = response.data.url;
+      router.push(response.data.url);
     }
   }
 
@@ -44,7 +48,7 @@ export default function CartPage() {
     total += price;
   }
 
-  if (window.location.href.includes("success")) {
+  if (isSuccessPage) {
     return (
       <div className="flex justify-center">
         <div className="Center">
