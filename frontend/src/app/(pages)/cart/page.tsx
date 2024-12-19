@@ -22,10 +22,13 @@ export default function CartPage() {
     }
   }, [cartProducts]);
 
-  async function formSubmit(formValues: FormValues) {
+  async function goToPayment(formValues: FormValues) {
     const formData = { ...formValues, products: cartProducts };
     const response = await axios.post("/api/checkout", formData);
-    console.log(response.data);
+
+    if (response.data.url) {
+      window.location = response.data.url;
+    }
   }
 
   function moreOfThisProduct(id: string) {
@@ -39,6 +42,37 @@ export default function CartPage() {
   for (const productId of cartProducts) {
     const price = Number(products.find((p) => p._id === productId)?.price || 0);
     total += price;
+  }
+
+  if (window.location.href.includes("success")) {
+    return (
+      <div className="flex justify-center">
+        <div className="Center">
+          <div className="bg-[#fff] rounded-md p-8 flex items-center gap-4">
+            <div className="rounded-full border p-4 bg-lime-600 text-white">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={4}
+                stroke="currentColor"
+                className="size-6"
+              >
+                <path
+                  strokeLinecap="square"
+                  strokeLinejoin="round"
+                  d="m4.5 12.75 6 6 9-13.5"
+                />
+              </svg>
+            </div>
+            <div>
+              <h2>Thanks for your order</h2>
+              <p>We will email you when your order will be sent.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -112,7 +146,7 @@ export default function CartPage() {
             <Form
               className="bg-[#fff] rounded-md p-8 text-sm"
               title="Order information"
-              onSubmitForm={formSubmit}
+              onSubmitForm={goToPayment}
             >
               <div className="mt-4">
                 <Form.Input

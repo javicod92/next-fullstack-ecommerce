@@ -32,7 +32,7 @@ export async function POST(request: NextRequest) {
           price_data: {
             currency: "usd",
             product_data: { name: productInfo.title },
-            unit_amount: quantity * productInfo.price,
+            unit_amount: quantity * productInfo.price * 100,
           },
         });
       }
@@ -59,7 +59,7 @@ export async function POST(request: NextRequest) {
       metadata: { orderId: orderDoc._id.toString() },
     });
 
-    return NextResponse.json(orderDoc, { status: 200 });
+    return NextResponse.json({ url: session.url }, { status: 200 });
   } catch (error) {
     return NextResponse.json(
       { message: "Error in posting data" },
