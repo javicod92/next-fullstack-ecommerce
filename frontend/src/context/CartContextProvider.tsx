@@ -6,6 +6,7 @@ type ContextTypes = {
   cartProducts: Array<string>;
   addProduct(productId: string): void;
   removeProduct(productId: string): void;
+  clearCart: () => void;
 };
 
 export const CartContext = createContext<ContextTypes | null>(null);
@@ -48,8 +49,15 @@ export default function CartContextProvider({
     });
   }
 
+  function clearCart() {
+    setCartProducts([]);
+    localStorage.removeItem("cart");
+  }
+
   return (
-    <CartContext.Provider value={{ cartProducts, addProduct, removeProduct }}>
+    <CartContext.Provider
+      value={{ cartProducts, clearCart, addProduct, removeProduct }}
+    >
       {children}
     </CartContext.Provider>
   );

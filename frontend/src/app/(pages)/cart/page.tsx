@@ -10,7 +10,8 @@ import { useContext, useEffect, useState } from "react";
 type FormValues = Record<string, string>;
 
 export default function CartPage() {
-  const { cartProducts, addProduct, removeProduct } = useContext(CartContext)!;
+  const { cartProducts, clearCart, addProduct, removeProduct } =
+    useContext(CartContext)!;
   const [products, setProducts] = useState<Array<Record<string, string>>>([]);
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -26,6 +27,12 @@ export default function CartPage() {
       setProducts([]);
     }
   }, [cartProducts]);
+
+  useEffect(() => {
+    if (isSuccessPage) {
+      clearCart();
+    }
+  }, []);
 
   async function goToPayment(formValues: FormValues) {
     const formData = { ...formValues, products: cartProducts };
