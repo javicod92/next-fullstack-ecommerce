@@ -43,7 +43,6 @@ export async function POST(request: NextRequest) {
         }
         break;
       default:
-        // Unexpected event type
         console.log(`Unhandled event type ${event.type}.`);
     }
 
