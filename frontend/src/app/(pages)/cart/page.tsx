@@ -52,9 +52,12 @@ export default function CartPage() {
   }
 
   for (const productId of cartProducts) {
-    const price = Number(products.find((p) => p._id === productId)?.price || 0);
+    const price = parseFloat(
+      Number(products.find((p) => p._id === productId)?.price || 0).toFixed(2)
+    );
     total += price;
   }
+  total = parseFloat(total.toFixed(2)); // Formatear el total a dos decimales
 
   if (isSuccessPage) {
     return <Successfully />;
@@ -77,51 +80,52 @@ export default function CartPage() {
                   </tr>
                 </thead>
                 <tbody>
-                  {products.map((product) => (
-                    <tr key={product._id}>
-                      <td className="py-2 text-sm">
-                        <div className="w-[100px] h-[100px] p-2 border shadow-md rounded-md flex items-center justify-center mb-2">
-                          <img
-                            className="max-w-[full] max-h-full"
-                            src={product.images[0]}
-                            alt={product.title}
-                          />
-                        </div>
-                        <p>{product.title}</p>
-                      </td>
-                      <td className="p-4">
-                        <div className="text-nowrap border rounded-lg overflow-hidden">
-                          <button
-                            className="DefaultSmallBtn"
-                            onClick={() => lessOfThisProduct(product._id)}
-                          >
-                            -
-                          </button>
-                          <span className="px-2">
-                            {
-                              cartProducts.filter((id) => id === product._id)
-                                .length
-                            }
-                          </span>
-                          <button
-                            className="DefaultSmallBtn"
-                            onClick={() => moreOfThisProduct(product._id)}
-                          >
-                            +
-                          </button>
-                        </div>
-                      </td>
-                      <td>
-                        $
-                        {cartProducts.filter((id) => id === product._id)
-                          .length * Number(product.price)}
-                      </td>
-                    </tr>
-                  ))}
+                  {products.map((product) => {
+                    const quantity = cartProducts.filter(
+                      (id) => id === product._id
+                    ).length;
+                    const price = parseFloat(product.price).toFixed(2);
+                    const subtotal = parseFloat(
+                      (quantity * parseFloat(price)).toFixed(2)
+                    );
+
+                    return (
+                      <tr key={product._id}>
+                        <td className="py-2 text-sm">
+                          <div className="w-[100px] h-[100px] p-2 border shadow-md rounded-md flex items-center justify-center mb-2">
+                            <img
+                              className="max-w-[full] max-h-full"
+                              src={product.images[0]}
+                              alt={product.title}
+                            />
+                          </div>
+                          <p>{product.title}</p>
+                        </td>
+                        <td className="p-4">
+                          <div className="text-nowrap border rounded-lg overflow-hidden">
+                            <button
+                              className="DefaultSmallBtn"
+                              onClick={() => lessOfThisProduct(product._id)}
+                            >
+                              -
+                            </button>
+                            <span className="px-2">{quantity}</span>
+                            <button
+                              className="DefaultSmallBtn"
+                              onClick={() => moreOfThisProduct(product._id)}
+                            >
+                              +
+                            </button>
+                          </div>
+                        </td>
+                        <td>${subtotal}</td>
+                      </tr>
+                    );
+                  })}
                   <tr>
                     <td>TOTAL</td>
                     <td></td>
-                    <td>${total}</td>
+                    <td>${total.toFixed(2)}</td>
                   </tr>
                 </tbody>
               </table>
