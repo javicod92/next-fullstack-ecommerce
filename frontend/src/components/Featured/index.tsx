@@ -19,7 +19,7 @@ export default function Featured({
       <div className="Center">
         <div className="grid grid-cols-2 gap-10">
           <div className="flex flex-col justify-center">
-            <h1>{product?.title}</h1>
+            <h1 className="text-5xl">{product?.title}</h1>
             <p className="text-[#aaa] mt-4">{product?.description}</p>
             <div className="mt-6 gap-2 flex">
               <Link href={"/products/" + product._id} className="OutlineBtn">

@@ -9,7 +9,7 @@ body {
 }
 
 h1 {
-  @apply text-5xl font-normal;
+  @apply text-2xl font-normal;
 }
 
 h2 {
