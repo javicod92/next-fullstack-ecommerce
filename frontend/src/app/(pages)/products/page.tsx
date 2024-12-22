@@ -1,3 +1,4 @@
+import NewProducts from "@/components/NewProducts";
 import { mongooseConnect } from "@/lib/mongoose";
 import { Product } from "@/models/Product";
 
@@ -15,7 +16,7 @@ export default async function ProductsPage() {
     <div className="flex justify-center">
       <div className="Center">
         <h1 className="font-semibold">All Products</h1>
-        {products.length}
+        <NewProducts products={products} />
       </div>
     </div>
   );

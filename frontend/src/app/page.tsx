@@ -22,7 +22,11 @@ export default async function HomePage() {
   return (
     <div>
       <Featured product={productData.featuredProduct} />
-      <NewProducts products={productData.newProducts} />
+      <NewProducts
+        products={productData.newProducts}
+        title="New Arrivals"
+        titleStyles="text-white"
+      />
     </div>
   );
 }
