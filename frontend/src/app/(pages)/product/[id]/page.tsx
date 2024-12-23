@@ -24,7 +24,6 @@ export default async function ProductPage({
             <ProductImages images={product.images} />
           </div>
           <div>
-            {"use client"}
             <ProductDescription product={product} />
           </div>
         </div>

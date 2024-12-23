@@ -1,12 +1,19 @@
 "use client";
 import { useState } from "react";
 
-export default function ProductImages({ images }: { images: Array<string> }) {
+export default function ProductImages({ images }: { images: string[] }) {
   const [imageIndex, setImageIndex] = useState<number>(0);
 
-  function setImage(index: number) {
-    setImageIndex(index);
-  }
+  const changeImage = (index: number) => setImageIndex(index);
+
+  const changeImageByArrow = (direction: "next" | "prev") => {
+    setImageIndex((prev) => {
+      if (direction === "prev") {
+        return prev > 0 ? prev - 1 : images.length - 1;
+      }
+      return prev < images.length - 1 ? prev + 1 : 0;
+    });
+  };
 
   return (
     <div>
@@ -14,10 +21,9 @@ export default function ProductImages({ images }: { images: Array<string> }) {
       <div className="w-full flex items-center justify-center">
         {/* Left Arrow */}
         <button
-          className="border rounded-r p-2 py-10 hover:text-blue-500 transition-transform absolute left-0"
-          onClick={() =>
-            setImageIndex((prev) => (prev > 0 ? prev - 1 : images.length - 1))
-          }
+          className="absolute left-0 border p-2 py-10 hover:text-blue-500 transition-transform"
+          onClick={() => changeImageByArrow("prev")}
+          aria-label="Previous image"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -39,17 +45,16 @@ export default function ProductImages({ images }: { images: Array<string> }) {
         <div className="flex-1 p-4 aspect-square max-w-full flex items-center justify-center">
           <img
             className="w-full h-full object-contain"
-            src={images?.[imageIndex]}
-            alt="Product Image"
+            src={images[imageIndex]}
+            alt={`Product Image ${imageIndex + 1}`}
           />
         </div>
 
         {/* Right Arrow */}
         <button
-          className="border p-2 py-10 rounded-l hover:text-blue-500 transition-transform absolute right-0"
-          onClick={() =>
-            setImageIndex((prev) => (prev < images.length - 1 ? prev + 1 : 0))
-          }
+          className="absolute right-0 border p-2 py-10 rounded-l hover:text-blue-500 transition-transform"
+          onClick={() => changeImageByArrow("next")}
+          aria-label="Next image"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -73,16 +78,18 @@ export default function ProductImages({ images }: { images: Array<string> }) {
         {images.map((image, index) => (
           <div
             key={image}
-            className={`border flex items-center justify-center aspect-square p-1 
-            hover:scale-110 transition-transform ease-in-out cursor-pointer ${
-              imageIndex === index ? "border-blue-500" : ""
+            className={`border flex items-center justify-center aspect-square p-1 cursor-pointer transition-transform ease-in-out ${
+              imageIndex === index
+                ? "border-blue-500 scale-110"
+                : "hover:scale-110"
             }`}
-            onClick={() => setImage(index)}
+            onClick={() => changeImage(index)}
+            aria-label={`Image ${index + 1}`}
           >
             <img
               className="w-full h-full object-contain"
               src={image}
-              alt="Product Thumbnail"
+              alt={`Product Thumbnail ${index + 1}`}
             />
           </div>
         ))}
