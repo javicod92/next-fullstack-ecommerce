@@ -32,6 +32,8 @@ export default function CartContextProvider({
     //Local storage is used because when the user refreshes the page, product cart restart to zero
     if (cartProducts?.length > 0) {
       localStorage.setItem("cart", JSON.stringify(cartProducts));
+    } else {
+      localStorage.removeItem("cart");
     }
   }, [cartProducts]);
 

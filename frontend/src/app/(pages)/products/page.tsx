@@ -13,7 +13,7 @@ async function getServerSideProps() {
 export default async function ProductsPage() {
   const products = await getServerSideProps();
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center mt-10">
       <div className="Center">
         <h1 className="font-semibold">All Products</h1>
         <NewProducts products={products} />

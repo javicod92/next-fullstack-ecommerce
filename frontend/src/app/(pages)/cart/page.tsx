@@ -102,7 +102,7 @@ export default function CartPage() {
                           <p>{product.title}</p>
                         </td>
                         <td className="p-4">
-                          <div className="text-nowrap border rounded-lg overflow-hidden">
+                          <div className="text-nowrap w-max border rounded-lg overflow-hidden">
                             <button
                               className="DefaultSmallBtn"
                               onClick={() => lessOfThisProduct(product._id)}
