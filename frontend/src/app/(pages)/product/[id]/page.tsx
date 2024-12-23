@@ -25,7 +25,7 @@ export default async function ProductPage({
           </div>
           <div>
             {"use client"}
-            <ProductDescription product={product} _id={product._id} />
+            <ProductDescription product={product} />
           </div>
         </div>
       </div>

@@ -5,10 +5,8 @@ import { useContext } from "react";
 
 export default function ProductDescription({
   product,
-  _id,
 }: {
   product: Record<string, string>;
-  _id: string;
 }) {
   const { addProduct } = useContext(CartContext)!;
 
@@ -19,7 +17,7 @@ export default function ProductDescription({
       <div className="font-bold text-lg font-[Viga]">${product.price}</div>
       <button
         className="PrimarySmallBtnBlack flex gap-2 justify-center"
-        onClick={() => addProduct(_id)}
+        onClick={() => addProduct(product._id)}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
