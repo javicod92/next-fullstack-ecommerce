@@ -17,7 +17,7 @@ export default function Featured({
       <div className="w-full h-[300px] absolute bg-gradient-to-b from-zinc-900 from-40% to-80% to-transparent top-full -z-10"></div>
       {/* The div below is the component center */}
       <div className="Center">
-        <div className="grid grid-cols-2 gap-10">
+        <div className="flex flex-col gap-10 md:grid md:grid-cols-2">
           <div className="flex flex-col justify-center">
             <h1 className="text-5xl">{product?.title}</h1>
             <p className="text-[#aaa] mt-4">{product?.description}</p>
@@ -41,13 +41,13 @@ export default function Featured({
               </button>
             </div>
           </div>
-          <div className="flex flex-col justify-center">
+          <div className="flex flex-col justify-center items-center">
             <Image
               src={product?.images[7]}
               alt="Product"
               width={500}
               height={500}
-              style={{ maxWidth: "100%" }}
+              className="max-w-[400px] md:max-w-full"
             />
           </div>
         </div>
