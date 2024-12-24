@@ -19,7 +19,7 @@ export default async function ProductPage({
   return (
     <div className="flex justify-center">
       <div className="Center">
-        <div className="grid grid-cols-2 gap-8 mt-10">
+        <div className="flex flex-col sm:grid sm:grid-cols-2 gap-8 mt-10">
           <div className="bg-[#fff] rounded-md p-8 shadow-md relative">
             <ProductImages images={product.images} />
           </div>

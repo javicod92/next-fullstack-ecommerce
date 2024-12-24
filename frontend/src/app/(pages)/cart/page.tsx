@@ -66,7 +66,7 @@ export default function CartPage() {
   return (
     <div className="flex justify-center">
       <div className="Center">
-        <div className="grid grid-cols-[1.2fr,.8fr] gap-4 mt-10 ">
+        <div className="flex flex-col md:grid md:grid-cols-[1.2fr,.8fr] gap-4 mt-10 ">
           <div className="bg-[#fff] rounded-md p-8">
             <h2>Cart</h2>
             {!cartProducts?.length && <div>Your cart is empty</div>}
