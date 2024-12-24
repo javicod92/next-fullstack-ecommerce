@@ -85,7 +85,7 @@ export default function Footer() {
               </div>
             </div>
             {/* RIGHT */}
-            <div className="w-full md:w-1/2 lg:w-1/4 flex flex-col gap-8 grow">
+            <div className="w-full md:w-1/2 lg:w-1/4 flex flex-col gap-6 grow">
               <h1 className="text-lg text-white font-semibold">SUBSCRIBE</h1>
               <p>
                 Be the first to get the latest news about trends, promotions and
