@@ -17,7 +17,7 @@ export default function Featured({
       <div className="w-full h-[300px] absolute bg-gradient-to-b from-zinc-900 from-40% to-80% to-transparent top-full -z-10"></div>
       {/* The div below is the component center */}
       <div className="Center">
-        <div className="flex flex-col gap-10 md:grid md:grid-cols-2">
+        <div className="flex flex-col-reverse gap-10 md:grid md:grid-cols-2">
           <div className="flex flex-col justify-center">
             <h1 className="text-5xl">{product?.title}</h1>
             <p className="text-[#aaa] mt-4">{product?.description}</p>
