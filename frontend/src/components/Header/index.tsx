@@ -27,7 +27,7 @@ export default function Header() {
             <Link href={"/account"}>Account</Link>
             <Link href={"/cart"}>Cart ({cartProducts.length})</Link>
           </nav>
-          <div className="md:hidden">
+          <div className="md:hidden leading-[0]">
             <button onClick={() => setIsNavOpen((prevState) => !prevState)}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
