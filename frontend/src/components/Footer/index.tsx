@@ -112,17 +112,17 @@ export default function Footer() {
         </div>
       </div>
       {/* BOTTOM SECTION */}
-      <div className="bg-zinc-900 flex justify-center p-2 flex-col md:flex-row items-center gap-8 text-zinc-300">
+      <div className="bg-zinc-900 text-sm flex justify-center flex-col md:flex-row items-center gap-8 text-zinc-300">
         <div className="Center flex justify-between flex-wrap">
           <div className="">© 2024 Ecommerce</div>
           <div className="flex flex-col gap-8 md:flex-row">
             <div className="">
               <span className="text-gray-500 mr-4">Language</span>
-              <span className="font-medium">United States | English</span>
+              <span className="">United States | English</span>
             </div>
             <div className="">
               <span className="text-gray-500 mr-4">Currency</span>
-              <span className="font-medium">$ USD</span>
+              <span className="">$ USD</span>
             </div>
           </div>
         </div>

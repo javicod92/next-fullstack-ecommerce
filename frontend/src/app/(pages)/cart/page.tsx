@@ -4,6 +4,7 @@ import Form from "@/components/Form";
 import Successfully from "@/components/Successfully";
 import { CartContext } from "@/context/CartContextProvider";
 import axios from "axios";
+import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 
@@ -92,9 +93,11 @@ export default function CartPage() {
                     return (
                       <tr key={product._id}>
                         <td className="py-2 text-sm">
-                          <div className="w-[100px] h-[100px] p-2 border shadow-md rounded-md flex items-center justify-center mb-2">
-                            <img
-                              className="max-w-[full] max-h-full"
+                          <div className="w-[100px] aspect-square p-2 border shadow-md rounded-md flex items-center justify-center mb-2">
+                            <Image
+                              width={82}
+                              height={82}
+                              className="max-w-[full] max-h-full object-contain"
                               src={product.images[0]}
                               alt={product.title}
                             />
