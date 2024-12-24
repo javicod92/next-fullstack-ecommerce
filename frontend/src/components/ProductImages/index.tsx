@@ -21,7 +21,7 @@ export default function ProductImages({ images }: { images: string[] }) {
       <div className="w-full flex items-center justify-center">
         {/* Left Arrow */}
         <button
-          className="absolute left-0 border p-2 py-10 hover:text-blue-500 transition-transform"
+          className="absolute shadow-md rounded-r-full left-0 border p-2 py-4 hover:text-blue-500 transition-transform"
           onClick={() => changeImageByArrow("prev")}
           aria-label="Previous image"
         >
@@ -52,7 +52,7 @@ export default function ProductImages({ images }: { images: string[] }) {
 
         {/* Right Arrow */}
         <button
-          className="absolute right-0 border p-2 py-10 rounded-l hover:text-blue-500 transition-transform"
+          className="absolute shadow-md rounded-l-full right-0 border p-2 py-4 hover:text-blue-500 transition-transform"
           onClick={() => changeImageByArrow("next")}
           aria-label="Next image"
         >
