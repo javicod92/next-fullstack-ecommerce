@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { Loader } from "../Loader";
 import axios from "axios";
 import NotificationContext from "@/context/NotificationContext";
+import Image from "next/image";
 // import Image from "next/image";
 
 type ProductsType = {
@@ -222,13 +223,19 @@ export default function NewProductForm({
             images.map((url, index) => (
               <div
                 key={url}
-                className="h-24 p-2 bg-white shadow-sm rounded-sm border border-gray-200"
+                className="h-24 aspect-square flex items-center justify-center p-2 bg-white shadow-sm rounded-sm border border-gray-200"
                 draggable
                 onDragStart={(e) => handleDragStart(e, index)}
                 onDragOver={handleDragOver}
                 onDrop={(e) => handleDrop(e, index)}
               >
-                <img src={url} alt="" className="" />
+                <Image
+                  src={url}
+                  width={94}
+                  height={94}
+                  alt="Product Image"
+                  className="max-w-full object-contain"
+                />
               </div>
             ))}
           {isUploading && (
