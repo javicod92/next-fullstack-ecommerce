@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import CartContextProvider from "@/context/CartContextProvider";
+import Footer from "@/components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,8 +22,9 @@ export default function RootLayout({
       <body className={`${inter.className} antialiased`}>
         <CartContextProvider>
           <Header />
-          <main className="mt-[64px] md:mt-0">{children}</main>
+          <main className="mt-[64px] md:mt-0 min-h-screen ">{children}</main>
         </CartContextProvider>
+        <Footer />
       </body>
     </html>
   );
