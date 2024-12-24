@@ -22,7 +22,7 @@ export default function Featured({
             <h1 className="text-5xl">{product?.title}</h1>
             <p className="text-[#aaa] mt-4">{product?.description}</p>
             <div className="mt-6 gap-2 flex">
-              <Link href={"/products/" + product._id} className="OutlineBtn">
+              <Link href={"/product/" + product._id} className="OutlineBtn">
                 Read more
               </Link>
               <button
