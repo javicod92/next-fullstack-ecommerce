@@ -1,6 +1,7 @@
 "use client";
 
 import { CartContext } from "@/context/CartContextProvider";
+import Image from "next/image";
 import Link from "next/link";
 import { useContext } from "react";
 
@@ -20,7 +21,13 @@ export default function ProductBox({
         href={url}
         className="bg-[#fff] shadow-md rounded-md p-5 h-[150px] flex justify-center items-center transition-transform hover:scale-105"
       >
-        <img className="max-w-full max-h-full" src={images[0]} alt="" />
+        <Image
+          width={135}
+          height={135}
+          className="max-w-full max-h-full object-contain"
+          src={images[0]}
+          alt="Product Image"
+        />
       </Link>
       <div className="mt-2">
         <Link href={url}>
