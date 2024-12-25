@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Ofers() {
   return (
-    <div className="bg-[#e1ff00] flex justify-center backdrop:blur-md">
+    <div className="bg-[#E8F8F5] flex justify-center backdrop:blur-md">
       {/* CAMPAIGN */}
       <div className="Center hidden px-4 sm:flex justify-between h-64">
         <div className="w-2/3 flex flex-col items-center justify-center gap-8">
