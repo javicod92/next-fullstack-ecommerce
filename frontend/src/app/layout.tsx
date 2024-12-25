@@ -22,7 +22,7 @@ export default function RootLayout({
       <body className={`${inter.className} antialiased`}>
         <CartContextProvider>
           <Header />
-          <main className="mt-[64px] md:mt-0 min-h-screen ">{children}</main>
+          <main className="mt-[64px] md:mt-0 min-h-screen">{children}</main>
         </CartContextProvider>
         <Footer />
       </body>

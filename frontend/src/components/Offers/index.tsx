@@ -4,7 +4,7 @@ export default function Ofers() {
   return (
     <div className="bg-[#e7e7e7] flex justify-center backdrop:blur-md">
       {/* CAMPAIGN */}
-      <div className="Center hidden px-4 sm:flex justify-between h-64">
+      <div className="Center !pb-0 hidden px-4 sm:flex justify-between h-64">
         <div className="w-2/3 flex flex-col items-center justify-center gap-8">
           <h1 className="text-4xl font-semibold leading-[48px] text-gray-700 text-center">
             Grab up to 50% off on
