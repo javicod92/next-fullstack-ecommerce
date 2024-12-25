@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Ofers() {
   return (
-    <div className="bg-[#E8F8F5] flex justify-center backdrop:blur-md">
+    <div className="bg-[#e7e7e7] flex justify-center backdrop:blur-md">
       {/* CAMPAIGN */}
       <div className="Center hidden px-4 sm:flex justify-between h-64">
         <div className="w-2/3 flex flex-col items-center justify-center gap-8">
@@ -11,8 +11,8 @@ export default function Ofers() {
             <br />
             Selected Product
           </h1>
-          <button className="rounded-3xl bg-[#F35C7A] text-white w-max py-3 px-5 text-sm">
-            Buy Now
+          <button className="rounded-3xl bg-[#F35C7A] shadow-md text-white w-max py-3 px-5 text-sm">
+            Read more
           </button>
         </div>
         <div className="relative w-1/3 ">
