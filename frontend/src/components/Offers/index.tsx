@@ -1,30 +1,15 @@
 import Image from "next/image";
 
-export default function Ofers() {
+export default function Offers() {
   return (
-    <div className="bg-[#e7e7e7] flex justify-center backdrop:blur-md">
-      {/* CAMPAIGN */}
-      <div className="Center !pb-0 hidden px-4 sm:flex justify-between h-64">
-        <div className="w-2/3 flex flex-col items-center justify-center gap-8">
-          <h1 className="text-4xl font-semibold leading-[48px] text-gray-700 text-center">
-            Grab up to 50% off on
-            <br />
-            Selected Product
-          </h1>
-          <button className="rounded-3xl bg-[#F35C7A] shadow-md text-white w-max py-3 px-5 text-sm">
-            Read more
-          </button>
-        </div>
-        <div className="relative w-1/3 ">
-          <Image
-            src="/woman.png"
-            alt="Product Image"
-            width={255}
-            height={255}
-            className="max-w-full max-h-full object-contain "
-          />
-        </div>
-      </div>
+    <div className="hidden md:block">
+      <Image
+        src="/Sintítulo.webp"
+        width={1920}
+        height={256}
+        alt="Offers"
+        className="w-full"
+      />
     </div>
   );
 }
