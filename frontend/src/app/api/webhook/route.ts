@@ -1,9 +1,12 @@
 import { mongooseConnect } from "@/lib/mongoose";
 import { Order } from "@/models/Order";
 import { NextRequest, NextResponse } from "next/server";
+import Stripe from "stripe";
 
-const stripe = require("stripe")(process.env.STRIPE_SK);
-const endpointSecret = process.env.STRIPE_ESK;
+const stripe = new Stripe(process.env.STRIPE_SK as string, {
+  apiVersion: "2024-12-18.acacia",
+});
+const endpointSecret = process.env.STRIPE_ESK as string;
 
 export async function POST(request: NextRequest) {
   try {
@@ -15,25 +18,25 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Signature missing" }, { status: 400 });
     }
 
-    let event;
+    let event: Stripe.Event;
 
     try {
       const body = await request.text();
-
       event = stripe.webhooks.constructEvent(body, signature, endpointSecret);
-    } catch (err: any) {
-      console.log(`Webhook signature verification failed.`, err.message);
+    } catch (err) {
+      const errorMessage =
+        err instanceof Error ? err.message : "Unknown error occurred";
+      console.error("Webhook signature verification failed:", errorMessage);
       return NextResponse.json(
         { error: "Webhook signature verification failed" },
         { status: 400 }
       );
     }
 
-    // Handle the event
     switch (event.type) {
       case "checkout.session.completed":
-        const data = event.data.object;
-        const orderId = data.metadata.orderId;
+        const data = event.data.object as Stripe.Checkout.Session;
+        const orderId = data.metadata?.orderId;
         const paid = data.payment_status === "paid";
 
         if (orderId && paid) {
@@ -48,8 +51,11 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json("ok", { status: 200 });
   } catch (error) {
+    const errorMessage =
+      error instanceof Error ? error.message : "Unknown error occurred";
+    console.error("Error in POST handler:", errorMessage);
     return NextResponse.json(
-      { message: "Error in obtaining data", error },
+      { message: "Error in obtaining data", error: errorMessage },
       { status: 500 }
     );
   }

@@ -2,7 +2,11 @@ import { mongooseConnect } from "@/lib/mongoose";
 import { Order } from "@/models/Order";
 import { Product } from "@/models/Product";
 import { NextRequest, NextResponse } from "next/server";
-const stripe = require("stripe")(process.env.STRIPE_SK);
+import Stripe from "stripe";
+
+const stripe = new Stripe(process.env.STRIPE_SK as string, {
+  apiVersion: "2024-12-18.acacia",
+});
 
 export function GET() {
   return NextResponse.json(
@@ -19,7 +23,7 @@ export async function POST(request: NextRequest) {
     await mongooseConnect();
     const productsInfo = await Product.find({ _id: { $in: uniqueIds } });
 
-    let line_items = [];
+    const line_items = [];
     for (const productId of uniqueIds) {
       const productInfo = productsInfo.find(
         (p) => p._id.toString() === productId
@@ -32,7 +36,7 @@ export async function POST(request: NextRequest) {
           price_data: {
             currency: "usd",
             product_data: { name: productInfo.title },
-            unit_amount: quantity * productInfo.price * 100,
+            unit_amount: productInfo.price * 100, // Stripe expects the amount in cents
           },
         });
       }
@@ -54,16 +58,19 @@ export async function POST(request: NextRequest) {
       line_items,
       mode: "payment",
       customer_email: email,
-      success_url: process.env.PUBLIC_URL + "/cart?success=1",
-      cancel_url: process.env.PUBLIC_URL + "/cart?canceled=1",
+      success_url: `${process.env.PUBLIC_URL}/cart?success=1`,
+      cancel_url: `${process.env.PUBLIC_URL}/cart?canceled=1`,
       metadata: { orderId: orderDoc._id.toString(), test: "ok" },
     });
 
     return NextResponse.json({ url: session.url }, { status: 200 });
   } catch (error) {
-    return NextResponse.json(
-      { message: "Error in posting data" },
-      { status: 500 }
-    );
+    if (error instanceof Error) {
+      console.error("Error in POST:", error);
+      return NextResponse.json(
+        { message: "Error in posting data", error: error.message },
+        { status: 500 }
+      );
+    }
   }
 }

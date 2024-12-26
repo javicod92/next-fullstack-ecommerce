@@ -20,12 +20,20 @@ export function Input({ label, name, ...props }: InputProps) {
   }
 
   return (
-    <input
-      className="w-full border p-1 mb-1 rounded-sm"
-      {...props}
-      name={name}
-      value={formValues[name] || ""}
-      onChange={handleChange}
-    />
+    <div className="mb-2">
+      {label && (
+        <label htmlFor={name} className="block text-sm font-medium mb-1">
+          {label}
+        </label>
+      )}
+      <input
+        className="w-full border p-1 mb-1 rounded-sm"
+        {...props}
+        name={name}
+        id={name}
+        value={formValues[name] || ""}
+        onChange={handleChange}
+      />
+    </div>
   );
 }
