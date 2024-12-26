@@ -48,6 +48,7 @@ export default function Featured({
               width={500}
               height={500}
               className="max-w-[400px] md:max-w-full"
+              priority={true}
             />
           </div>
         </div>

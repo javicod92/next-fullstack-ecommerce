@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { useState } from "react";
 
 export default function ProductImages({ images }: { images: string[] }) {
@@ -43,7 +44,9 @@ export default function ProductImages({ images }: { images: string[] }) {
 
         {/* Main Image */}
         <div className="flex-1 p-4 aspect-square max-w-full flex items-center justify-center">
-          <img
+          <Image
+            width={268}
+            height={268}
             className="w-full h-full object-contain"
             src={images[imageIndex]}
             alt={`Product Image ${imageIndex + 1}`}
@@ -86,7 +89,9 @@ export default function ProductImages({ images }: { images: string[] }) {
             onClick={() => changeImage(index)}
             aria-label={`Image ${index + 1}`}
           >
-            <img
+            <Image
+              height={60}
+              width={60}
               className="w-full h-full object-contain"
               src={image}
               alt={`Product Thumbnail ${index + 1}`}

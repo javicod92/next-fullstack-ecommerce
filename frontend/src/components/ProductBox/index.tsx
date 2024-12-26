@@ -8,7 +8,6 @@ import { useContext } from "react";
 export default function ProductBox({
   _id,
   title,
-  description,
   price,
   images,
 }: Record<string, string>) {
@@ -24,7 +23,8 @@ export default function ProductBox({
         <Image
           width={135}
           height={135}
-          className="max-w-full max-h-full object-contain"
+          className="max-w-full max-h-full h-full w-full object-contain"
+          style={{ width: "auto", height: "auto" }}
           src={images[0]}
           alt="Product Image"
         />
