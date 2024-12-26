@@ -9,6 +9,7 @@ export default function Offers() {
         height={256}
         alt="Offers"
         className="w-full"
+        priority={true}
       />
     </div>
   );
