@@ -19,7 +19,7 @@ export default function Featured({
       <div className="Center">
         <div className="flex flex-col-reverse gap-10 md:grid md:grid-cols-2">
           <div className="flex flex-col justify-center">
-            <h1 className="text-5xl">{product?.title}</h1>
+            <h1 className="text-4xl sm:text-5xl">{product?.title}</h1>
             <p className="text-[#aaa] mt-4">{product?.description}</p>
             <div className="mt-6 gap-2 flex">
               <Link href={"/product/" + product._id} className="OutlineBtn">
@@ -47,7 +47,7 @@ export default function Featured({
               alt="Product"
               width={500}
               height={500}
-              className="max-w-[400px] md:max-w-full"
+              className="max-w-[400px] w-full h-auto md:max-w-full"
               priority={true}
             />
           </div>
