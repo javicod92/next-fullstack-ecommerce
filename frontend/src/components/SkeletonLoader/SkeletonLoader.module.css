@@ -1,0 +1,46 @@
+/* Loading skeleton animation */
+.skeletonLoader {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.skeletonBanner {
+  height: 200px;
+  width: 100%;
+  background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+  animation: shimmer 1.5s infinite;
+  border-radius: 8px;
+}
+
+.skeletonTitle {
+  height: 30px;
+  width: 60%;
+  background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+  margin: 20px 0;
+}
+
+.skeletonGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.skeletonSquare {
+  height: 0;
+  padding-top: 100%;
+  background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: 200px 0;
+  }
+}

@@ -4,6 +4,8 @@ import "./globals.css";
 import Header from "@/components/Header";
 import CartContextProvider from "@/context/CartContextProvider";
 import Footer from "@/components/Footer";
+import { Suspense } from "react";
+import Loading from "./loading";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,7 +24,9 @@ export default function RootLayout({
       <body className={`${inter.className} antialiased`}>
         <CartContextProvider>
           <Header />
-          <main className="mt-[64px] md:mt-0 min-h-screen">{children}</main>
+          <Suspense fallback={<Loading />}>
+            <main className="mt-[64px] md:mt-0 min-h-screen">{children}</main>
+          </Suspense>
         </CartContextProvider>
         <Footer />
       </body>
