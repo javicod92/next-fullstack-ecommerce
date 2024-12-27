@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, useEffect, useState } from "react";
+import { Bounce, toast, ToastContainer } from "react-toastify";
 
 type ContextTypes = {
   cartProducts: Array<string>;
@@ -39,6 +40,17 @@ export default function CartContextProvider({
 
   function addProduct(productId: string) {
     setCartProducts((prev) => [...prev, productId]);
+    toast.success("Product added to cart", {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+      transition: Bounce,
+    });
   }
 
   function removeProduct(productId: string) {
@@ -61,6 +73,7 @@ export default function CartContextProvider({
       value={{ cartProducts, clearCart, addProduct, removeProduct }}
     >
       {children}
+      <ToastContainer />
     </CartContext.Provider>
   );
 }
