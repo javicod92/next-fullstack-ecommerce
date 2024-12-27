@@ -13,7 +13,9 @@ export default function Header() {
       {/* The div below is the component center */}
       <div className="Center">
         <div className="flex justify-between">
-          <Link href={"/"}>Ecommerce</Link>
+          <Link onClick={() => setIsNavOpen(false)} href={"/"}>
+            Ecommerce
+          </Link>
           <nav
             className={
               (isNavOpen ? "left-0" : "-left-full") +
@@ -21,11 +23,21 @@ export default function Header() {
               "flex flex-col absolute w-full h-screen transition-all ease-in-out duration-300 p-5 py-[50px] -z-10 bg-zinc-900 gap-4 md:flex-row md:static md:p-0 md:w-auto md:h-auto md:z-0"
             }
           >
-            <Link href={"/"}>Home</Link>
-            <Link href={"/products"}>All products</Link>
-            <Link href={"/categories"}>Categories</Link>
-            <Link href={"/account"}>Account</Link>
-            <Link href={"/cart"}>Cart ({cartProducts.length})</Link>
+            <Link onClick={() => setIsNavOpen(false)} href={"/"}>
+              Home
+            </Link>
+            <Link onClick={() => setIsNavOpen(false)} href={"/products"}>
+              All products
+            </Link>
+            <Link onClick={() => setIsNavOpen(false)} href={"/categories"}>
+              Categories
+            </Link>
+            <Link onClick={() => setIsNavOpen(false)} href={"/account"}>
+              Account
+            </Link>
+            <Link onClick={() => setIsNavOpen(false)} href={"/cart"}>
+              Cart ({cartProducts.length})
+            </Link>
           </nav>
           <div className="md:hidden leading-[0]">
             <button onClick={() => setIsNavOpen((prevState) => !prevState)}>
