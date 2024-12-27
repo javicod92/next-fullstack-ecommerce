@@ -4,7 +4,7 @@ export default function Offers() {
   return (
     <div className="hidden md:block">
       <Image
-        src="/Sintítulo.webp"
+        src="/OfferCard.webp"
         width={1920}
         height={256}
         alt="Offers"
