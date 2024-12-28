@@ -18,7 +18,7 @@ export default async function ProductsPage() {
       <div>
         <Offers />
       </div>
-      <div className="flex justify-center mt-10">
+      <div className="flex justify-center mt-5">
         <div className="Center">
           <h1 className="font-semibold">All Products</h1>
           <NewProducts products={products} />

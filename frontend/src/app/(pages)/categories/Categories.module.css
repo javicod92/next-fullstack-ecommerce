@@ -1,0 +1,22 @@
+.scroll_container {
+  overflow-x: auto;
+  scrollbar-color: transparent transparent;
+  transition: scrollbar-color 0.3s ease; /* Suavizar la transición al hover */
+}
+
+.scroll_container:hover {
+  scrollbar-color: #888 transparent; /* Cambia el color del thumb al hover */
+}
+
+.scroll_container::-webkit-scrollbar-thumb {
+  background: transparent; /* Transparente por defecto */
+  transition: background 0.3s ease; /* Suavizar transición */
+}
+
+.scroll_container:hover::-webkit-scrollbar-thumb {
+  background: #888; /* Color visible al hover */
+}
+
+.scroll_container::-webkit-scrollbar-track {
+  background: transparent; /* Fondo transparente */
+}
