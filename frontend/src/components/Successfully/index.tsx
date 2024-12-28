@@ -23,7 +23,7 @@ export default function SuccessPage() {
         </div>
         <div>
           <h2>Thanks for your order</h2>
-          <p>We will email you when your order will be sent.</p>
+          <p>We will email you when the product is shipped.</p>
         </div>
       </div>
     </div>
