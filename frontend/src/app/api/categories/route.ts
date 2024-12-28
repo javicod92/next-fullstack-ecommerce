@@ -7,10 +7,10 @@ export async function GET() {
   try {
     await mongooseConnect();
 
-    // Obtener todas las categorías con su estructura de padres
+    // Obtaining all categories with their parent structure
     const categories = await Category.find();
     const categoryParentMap = categories.reduce((map, category) => {
-      // Buscar la raíz de la jerarquía (categoría padre más alta)
+      // Searching for the highest category
       let currentCategory = category;
       while (currentCategory.parent) {
         currentCategory = categories.find(
@@ -21,18 +21,18 @@ export async function GET() {
       return map;
     }, {});
 
-    // Obtener todos los productos
+    // Obtaining all products
     const products = await Product.find();
 
     // Agrupar productos por la categoría raíz
     const groupedProducts = products.reduce((acc, product) => {
-      const parentCategoryId = categoryParentMap[product.category]; // Categoría raíz
+      const parentCategoryId = categoryParentMap[product.category]; // Root category
       if (!acc[parentCategoryId]) acc[parentCategoryId] = [];
-      acc[parentCategoryId].push(product); // Agregar producto a la categoría raíz
+      acc[parentCategoryId].push(product); // Add product to root category
       return acc;
     }, {});
 
-    // Preparar resultado final con nombres de las categorías padres
+    // Prepare final results with parent category names
     const result = await Promise.all(
       Object.entries(groupedProducts).map(async ([parentId, products]) => {
         const parentCategory = await Category.findById(parentId).select("name");
