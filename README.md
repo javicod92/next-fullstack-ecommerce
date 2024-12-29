@@ -21,3 +21,19 @@ This project is a complete e-commerce platform with a focus on efficient adminis
 - **Stripe**: Used to accept online customer payments
 - **React-toastify**: Used to display notifications to the user
 - **Motion**: Used to add animations to react components
+
+## 🚀 Main Functions
+### Backend
+
+**Credential creation and validation:**
+- User registration and data validation via NextAuth V5, using Google as login provider
+- Administrator user based on the NextAuth user role settings
+- Creation of user and role schemas stored in mogoDB Atlas database
+- Only users with "Admin" role have access to the administration page
+
+**Web application divided into simple pages or sections:**
+
+In the example I have used the registration and login with Google, but you could also use credentials validation such as email and password or other providers such as GitHub or others
+![Captura de pantalla 2024-12-29 102949](https://github.com/user-attachments/assets/54080ce7-de5f-4183-953c-015714dea98c)
+![Captura de pantalla 2024-12-29 103127](https://github.com/user-attachments/assets/c7549622-619f-4711-8faf-4e5219fa2903)
+*The images show the user's login via google*
