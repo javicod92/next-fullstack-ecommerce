@@ -4,7 +4,7 @@ This project is a complete e-commerce platform with a focus on efficient adminis
 - **Administrator panel (Backend)**: Exclusively for administrators, it allows only administrators to add, modify and delete products and categories on the site
 - **User section (Frontend)**: Designed for users to browse and consume the products published in the store
 
-## 🛠️ Commonly used frontend and backend technologies:
+## 🛠️ Common technologies used in Backend and Frontend:
 - **Next.js 15**: React framework, for creating faster server-side web applications
 - **React 19**: JavaScript library for creating dynamic and reusable user interfaces
 - **TypeScript**: JavaScript superset for adding static typing and error prevention
