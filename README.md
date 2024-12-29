@@ -8,7 +8,7 @@ This project is a complete e-commerce platform with a focus on efficient adminis
 - **Next.js 15**: React framework, for creating faster server-side web applications
 - **React 19**: JavaScript library for creating dynamic and reusable user interfaces
 - **TypeScript**: JavaScript superset for adding static typing and error prevention
-- **Tailwindcss css and css modules**: To provide the user with modern interfaces
+- **Tailwindcss, css and css modules**: To provide the user with modern interfaces
 - **MongoDb Atlas**: Database used for storing Users, Products and Product Categories
 - **Cloudinary**: Used to store product images
 - **Mongoose**: Used to manage the non-relational database MongoDb
