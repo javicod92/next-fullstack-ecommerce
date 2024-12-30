@@ -58,7 +58,38 @@ This project is a complete e-commerce platform with a focus on efficient adminis
 *6) Logout Function:*
 - This function allows the user to exit the page when the user no longer needs to use it
 
+**Page adapted to multiple screen resolutions (responsive)**
+- The page adapts to multiple screen resolutions for a better user experience
+
+## 📸 Project Screenshots
+### Backend
+**Login Page:**
+
 In the example I have used the registration and login with Google, but you could also use credentials validation such as email and password or other providers such as GitHub or others
 ![Captura de pantalla 2024-12-29 102949](https://github.com/user-attachments/assets/54080ce7-de5f-4183-953c-015714dea98c)
 ![Captura de pantalla 2024-12-29 103127](https://github.com/user-attachments/assets/c7549622-619f-4711-8faf-4e5219fa2903)
-*The images show the user's login via google*
+
+**Products Page:**
+
+The example below shows some of the products stored in the database
+![image](https://github.com/user-attachments/assets/a25616c2-e632-4035-b70e-0a6f1fb5a335)
+
+Adding New Product
+![image](https://github.com/user-attachments/assets/da7c04b2-c04e-4249-a862-d05632647d70)
+
+**Categories Page:**
+
+The example below shows some of the categories stored in the database
+![Captura de pantalla 2024-12-30 202445](https://github.com/user-attachments/assets/e111c115-c19a-4856-bd1d-2aad63eea172)
+
+Adding a new category
+![image](https://github.com/user-attachments/assets/dc5903e9-c916-4d08-9f0a-c8ec310bd1f1)
+
+**Orders Page:**
+![image](https://github.com/user-attachments/assets/6097c882-28eb-4a4b-85b8-406c88df098a)
+
+**Responsive web design**
+![image](https://github.com/user-attachments/assets/6cf125e9-3334-420b-9b1e-b09d48f4d477)
+![image](https://github.com/user-attachments/assets/dbdb97c7-747e-42ad-b9ec-680bff4f87ed)
+
+
