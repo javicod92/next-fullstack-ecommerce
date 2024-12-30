@@ -46,6 +46,18 @@ This project is a complete e-commerce platform with a focus on efficient adminis
 - Categories can have parent categories such as: Mobiles > iPhone
 - Categories, they can also have properties such as color, storage and others
 
+*4) Orders Page:*
+- On this page, the orders realized by users are listed in a table
+- The orders have a status that informs with YES or NO if the payment was successful
+- Orders, have the shipping location, user name and products requested
+- For payments, I used stripe webhook to listen for payment events
+
+*5) Settings Page:*
+- This page was created to add or remove administrator users in the future or to adjust aspects of the page
+
+*6) Logout Function:*
+- This function allows the user to exit the page when the user no longer needs to use it
+
 In the example I have used the registration and login with Google, but you could also use credentials validation such as email and password or other providers such as GitHub or others
 ![Captura de pantalla 2024-12-29 102949](https://github.com/user-attachments/assets/54080ce7-de5f-4183-953c-015714dea98c)
 ![Captura de pantalla 2024-12-29 103127](https://github.com/user-attachments/assets/c7549622-619f-4711-8faf-4e5219fa2903)
