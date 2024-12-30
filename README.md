@@ -62,7 +62,7 @@ This project is a complete e-commerce platform with a focus on efficient adminis
 - The page adapts to multiple screen resolutions for a better user experience
 
 ## 📸 Project Screenshots
-### Backend
+### Backend App
 **Login Page:**
 
 In the example I have used the registration and login with Google, but you could also use credentials validation such as email and password or other providers such as GitHub or others
@@ -92,4 +92,17 @@ Adding a new category
 ![image](https://github.com/user-attachments/assets/6cf125e9-3334-420b-9b1e-b09d48f4d477)
 ![image](https://github.com/user-attachments/assets/dbdb97c7-747e-42ad-b9ec-680bff4f87ed)
 
+### Frontend App
+![image](https://github.com/user-attachments/assets/e9004dbb-1c72-4bfc-9439-e6139fcd28a7)
+![image](https://github.com/user-attachments/assets/0df28ca9-9da1-4460-95dd-f178049b5914)
+![image](https://github.com/user-attachments/assets/01bf54a4-9f4e-47e2-9ee4-67ab8f7b13c5)
+
+![image](https://github.com/user-attachments/assets/60d48bcf-865f-48d4-b06f-5f8debfa0e6b)
+![image](https://github.com/user-attachments/assets/8fdb79d8-dd71-4d38-b82f-fd6d10c015a3)
+
+![image](https://github.com/user-attachments/assets/4ca107b1-db1b-4e3e-91ac-6b4c2e9da4ea)
+
+![image](https://github.com/user-attachments/assets/79060ea1-6a78-48e4-9986-b6f8cec39cf9)
+![image](https://github.com/user-attachments/assets/9f19207e-4779-4bb6-8db3-40b086c34cdf)
+![image](https://github.com/user-attachments/assets/7d73d6b7-1c33-46c0-8671-dec01dbdb9e3)
 
