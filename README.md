@@ -31,7 +31,20 @@ This project is a complete e-commerce platform with a focus on efficient adminis
 - Creation of user and role schemas stored in mogoDB Atlas database
 - Only users with "Admin" role have access to the administration page
 
-**Web application divided into simple pages or sections:**
+**Web application divided into simple pages or sections:** <br/>
+*1) Dashboard Page:*
+- Currently, the dashboard page displays the name and picture of the google account with which the user is logged in
+- In the future, it is possible to add information about the trends of the most demanded products
+
+*2) Products Page:*
+- This page allows the user to create, edit and delete products stored in the database
+- Each product added, has a title, description, price, category and images
+- Product images can be reordered as required by the user
+
+*3) Categories Page:*
+- This page allow the user create, edit and delete product categories stored in the database
+- Categories can have parent categories such as: Mobiles > iPhone
+- Categories, they can also have properties such as color, storage and others
 
 In the example I have used the registration and login with Google, but you could also use credentials validation such as email and password or other providers such as GitHub or others
 ![Captura de pantalla 2024-12-29 102949](https://github.com/user-attachments/assets/54080ce7-de5f-4183-953c-015714dea98c)
