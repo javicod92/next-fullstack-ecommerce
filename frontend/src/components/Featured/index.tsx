@@ -63,7 +63,7 @@ export default function Featured({
   }, [isTransitioning]);
 
   return (
-    <div className="relative w-full">
+    <div className="relative z-0 w-full">
       <div
         className={`flex ${
           isTransitioning ? "transition-transform duration-500" : ""
