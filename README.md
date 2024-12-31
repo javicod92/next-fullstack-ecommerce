@@ -111,4 +111,11 @@ Adding a new category
 ![image](https://github.com/user-attachments/assets/a0f9f6d5-5f20-46e7-9d38-92745ea16ee2)
 ![image](https://github.com/user-attachments/assets/3633f397-682f-4cac-9201-c5d89145a68c)
 
+![image](https://github.com/user-attachments/assets/03c2d1f3-a756-463f-bd05-fc7ef7ec400a)
+![image](https://github.com/user-attachments/assets/f03af7db-9678-4dde-bd1f-2ac36680a47a)
+![image](https://github.com/user-attachments/assets/a8ebf01d-7870-4ac4-bed6-ab4192e4d328)
+![image](https://github.com/user-attachments/assets/14431f3f-339e-42e4-8d9e-caa4eb0322de)
+![image](https://github.com/user-attachments/assets/88098930-4ae3-4511-95b6-62a86937bba3)
+![image](https://github.com/user-attachments/assets/a9531534-22d8-4882-a6a3-ea7fe72ded72)
+
 
