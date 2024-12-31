@@ -4,15 +4,21 @@ import { mongooseConnect } from "@/lib/mongoose";
 import { Product } from "@/models/Product";
 
 async function getServerSideProps() {
-  const featuredProductId = "6746494304ffa42d29c9cda5";
+  const featuredProductsId = [
+    "6746494304ffa42d29c9cda5",
+    "67464a7504ffa42d29c9cddd",
+    "677012e17867d0ee0abdb35c",
+  ];
   await mongooseConnect();
-  const featuredProduct = await Product.findById(featuredProductId);
+  const featuredProducts = await Product.find({
+    _id: { $in: featuredProductsId },
+  });
   const newProducts = await Product.find({}, null, {
     sort: { _id: -1 },
     limit: 16,
   });
   return {
-    featuredProduct: JSON.parse(JSON.stringify(featuredProduct)),
+    featuredProducts: JSON.parse(JSON.stringify(featuredProducts)),
     newProducts: JSON.parse(JSON.stringify(newProducts)),
   };
 }
@@ -20,8 +26,8 @@ async function getServerSideProps() {
 export default async function HomePage() {
   const productData = await getServerSideProps();
   return (
-    <div>
-      <Featured product={productData.featuredProduct} />
+    <div className="overflow-x-hidden">
+      <Featured products={productData.featuredProducts} />
       <NewProducts
         products={productData.newProducts}
         title="New Arrivals"

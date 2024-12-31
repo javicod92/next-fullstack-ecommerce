@@ -15,7 +15,7 @@ export default function NewProducts({
   titleStyles,
 }: ProductsType) {
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center relative z-10">
       <div className="Center">
         <h2 className={titleStyles}>{title}</h2>
         <div className="grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] gap-5 pt-5">
