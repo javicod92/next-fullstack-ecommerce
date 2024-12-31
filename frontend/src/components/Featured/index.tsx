@@ -3,7 +3,7 @@
 import { CartContext } from "@/context/CartContextProvider";
 import Image from "next/image";
 import Link from "next/link";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 
 export default function Featured({
   products,
@@ -11,28 +11,69 @@ export default function Featured({
   products: Array<Record<string, string>>;
 }) {
   const { addProduct } = useContext(CartContext)!;
-  const [activeIndex, setActiveIndex] = useState<number>(0);
+  const [activeIndex, setActiveIndex] = useState<number>(1); // Start at 1 for the first actual product
+  const [isTransitioning, setIsTransitioning] = useState<boolean>(true);
+  const transitionRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Clone products for seamless looping
+  const clonedProducts = [
+    products[products.length - 1], // Last product at the start
+    ...products,
+    products[0], // First product at the end
+  ];
 
   // Function to change the image every 5 seconds
   useEffect(() => {
     const interval = setInterval(() => {
-      setActiveIndex((prevIndex) => (prevIndex + 1) % products.length);
+      setActiveIndex((prevIndex) => prevIndex + 1);
     }, 5000);
 
     return () => clearInterval(interval);
-  }, [products.length]);
+  }, []);
+
+  // Handle seamless looping
+  useEffect(() => {
+    if (activeIndex === clonedProducts.length - 1) {
+      transitionRef.current = setTimeout(() => {
+        setIsTransitioning(false); // Disable transition
+        setActiveIndex(1); // Reset to the first actual product
+      }, 500); // Match transition duration
+    }
+
+    if (activeIndex === 0) {
+      transitionRef.current = setTimeout(() => {
+        setIsTransitioning(false); // Disable transition
+        setActiveIndex(clonedProducts.length - 2); // Reset to the last actual product
+      }, 500);
+    }
+
+    return () => {
+      if (transitionRef.current) {
+        clearTimeout(transitionRef.current);
+      }
+    };
+  }, [activeIndex, clonedProducts.length]);
+
+  // Re-enable transitions after adjustment
+  useEffect(() => {
+    if (!isTransitioning) {
+      const timeout = setTimeout(() => setIsTransitioning(true), 50); // Small delay to re-enable transitions
+      return () => clearTimeout(timeout);
+    }
+  }, [isTransitioning]);
 
   return (
-    <div
-      className="w-full relative z-0 transition-transform duration-500"
-      style={{ transform: `translateX(-${activeIndex * 100}%)` }}
-    >
-      <div className="flex w-[300%]">
-        {products.map((product) => (
-          <div key={product._id} className="w-full">
+    <div className="relative w-full">
+      <div
+        className={`flex ${
+          isTransitioning ? "transition-transform duration-500" : ""
+        }`}
+        style={{ transform: `translateX(-${activeIndex * 100}%)` }}
+      >
+        {clonedProducts.map((product, index) => (
+          <div key={index} className="w-full flex-shrink-0">
             <div className="flex justify-center bg-zinc-900 text-white py-[25px]">
               <div className="w-full h-[300px] absolute bg-gradient-to-b from-zinc-900 from-40% to-80% to-transparent top-full" />
-              {/* The div below is the component center */}
               <div className="Center h-[535px] md:h-[300px]">
                 <div className="flex flex-col-reverse gap-10 md:grid md:grid-cols-2">
                   <div className="flex flex-col justify-center">
