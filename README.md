@@ -63,13 +63,13 @@ This project is a complete e-commerce platform with a focus on efficient adminis
 
 ## 📸 Project Screenshots
 ### Backend App
-**Login Page:**
+**1) Login Page:**
 
 In the example I have used the registration and login with Google, but you could also use credentials validation such as email and password or other providers such as GitHub or others
 ![Captura de pantalla 2024-12-29 102949](https://github.com/user-attachments/assets/54080ce7-de5f-4183-953c-015714dea98c)
 ![Captura de pantalla 2024-12-29 103127](https://github.com/user-attachments/assets/c7549622-619f-4711-8faf-4e5219fa2903)
 
-**Products Page:**
+**2) Products Page:**
 
 The example below shows some of the products stored in the database
 ![image](https://github.com/user-attachments/assets/a25616c2-e632-4035-b70e-0a6f1fb5a335)
@@ -77,7 +77,7 @@ The example below shows some of the products stored in the database
 Adding New Product
 ![image](https://github.com/user-attachments/assets/da7c04b2-c04e-4249-a862-d05632647d70)
 
-**Categories Page:**
+**3) Categories Page:**
 
 The example below shows some of the categories stored in the database
 ![Captura de pantalla 2024-12-30 202445](https://github.com/user-attachments/assets/e111c115-c19a-4856-bd1d-2aad63eea172)
@@ -85,19 +85,34 @@ The example below shows some of the categories stored in the database
 Adding a new category
 ![image](https://github.com/user-attachments/assets/dc5903e9-c916-4d08-9f0a-c8ec310bd1f1)
 
-**Orders Page:**
+**4) Orders Page:**
 ![image](https://github.com/user-attachments/assets/6097c882-28eb-4a4b-85b8-406c88df098a)
 
-**Responsive web design**
-![image](https://github.com/user-attachments/assets/6cf125e9-3334-420b-9b1e-b09d48f4d477)
+**5) Responsive web design**
 ![image](https://github.com/user-attachments/assets/dbdb97c7-747e-42ad-b9ec-680bff4f87ed)
 
 ### Frontend App
+
+**1) Home Page** 
+
+This example shows the header(carousel) of the Home page
 ![image](https://github.com/user-attachments/assets/e9004dbb-1c72-4bfc-9439-e6139fcd28a7)
+
+This example shows the second product of the carousel (2 of 3)
+![image](https://github.com/user-attachments/assets/262ea975-baea-4e1a-b7a3-6aa8ba178ddb)
+
+This image shows the most recent products in the body of the Home page
 ![image](https://github.com/user-attachments/assets/0df28ca9-9da1-4460-95dd-f178049b5914)
+
+Image showing the Footer component present in the layout (all pages)
 ![image](https://github.com/user-attachments/assets/01bf54a4-9f4e-47e2-9ee4-67ab8f7b13c5)
 
+**2) All Products Page** 
+
+This image shows a header made in photoshop, where a product promotion is advertised
 ![image](https://github.com/user-attachments/assets/60d48bcf-865f-48d4-b06f-5f8debfa0e6b)
+
+Image showing different products in the All products page
 ![image](https://github.com/user-attachments/assets/8fdb79d8-dd71-4d38-b82f-fd6d10c015a3)
 
 ![image](https://github.com/user-attachments/assets/4ca107b1-db1b-4e3e-91ac-6b4c2e9da4ea)
@@ -117,6 +132,5 @@ Adding a new category
 ![image](https://github.com/user-attachments/assets/14431f3f-339e-42e4-8d9e-caa4eb0322de)
 ![image](https://github.com/user-attachments/assets/88098930-4ae3-4511-95b6-62a86937bba3)
 ![image](https://github.com/user-attachments/assets/a9531534-22d8-4882-a6a3-ea7fe72ded72)
-![image](https://github.com/user-attachments/assets/262ea975-baea-4e1a-b7a3-6aa8ba178ddb)
 
 
