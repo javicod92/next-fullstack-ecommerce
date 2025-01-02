@@ -131,7 +131,9 @@ More product categories
 This image shows a scroll bar when the user hovers the mouse over the category card
 ![image](https://github.com/user-attachments/assets/7d73d6b7-1c33-46c0-8671-dec01dbdb9e3)
 
+This example shows the notification card when users add products to the cart
 ![image](https://github.com/user-attachments/assets/9218435c-79e0-4351-9efe-900d1d808685)
+
 ![image](https://github.com/user-attachments/assets/1fc99b76-b771-46d7-b47b-5204ffb6e002)
 ![image](https://github.com/user-attachments/assets/a0f9f6d5-5f20-46e7-9d38-92745ea16ee2)
 ![image](https://github.com/user-attachments/assets/3633f397-682f-4cac-9201-c5d89145a68c)
