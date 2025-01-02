@@ -115,10 +115,20 @@ This image shows a header made in photoshop, where a product promotion is advert
 Image showing different products in the All products page
 ![image](https://github.com/user-attachments/assets/8fdb79d8-dd71-4d38-b82f-fd6d10c015a3)
 
+**3) Product Description Page** 
+
+This example shows all product photos and product description when the user clicks on any product
 ![image](https://github.com/user-attachments/assets/4ca107b1-db1b-4e3e-91ac-6b4c2e9da4ea)
 
+**4) Product Categories Page** 
+
+This image show some product categories
 ![image](https://github.com/user-attachments/assets/79060ea1-6a78-48e4-9986-b6f8cec39cf9)
+
+More product categories
 ![image](https://github.com/user-attachments/assets/9f19207e-4779-4bb6-8db3-40b086c34cdf)
+
+This image shows a scroll bar when the user hovers the mouse over the category card
 ![image](https://github.com/user-attachments/assets/7d73d6b7-1c33-46c0-8671-dec01dbdb9e3)
 
 ![image](https://github.com/user-attachments/assets/9218435c-79e0-4351-9efe-900d1d808685)
