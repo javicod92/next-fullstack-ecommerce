@@ -134,8 +134,15 @@ This image shows a scroll bar when the user hovers the mouse over the category c
 This example shows the notification card when users add products to the cart
 ![image](https://github.com/user-attachments/assets/9218435c-79e0-4351-9efe-900d1d808685)
 
+**5) Product Cart Page** 
+
+This example shows all the products added to the cart and also shows a form to proceed with the payment
 ![image](https://github.com/user-attachments/assets/1fc99b76-b771-46d7-b47b-5204ffb6e002)
+
+Stripe platform that allows the user to pay for all products ordered and accept online payments
 ![image](https://github.com/user-attachments/assets/a0f9f6d5-5f20-46e7-9d38-92745ea16ee2)
+
+This image shows a success screen when the payment has been successfully completed
 ![image](https://github.com/user-attachments/assets/3633f397-682f-4cac-9201-c5d89145a68c)
 
 ![image](https://github.com/user-attachments/assets/03c2d1f3-a756-463f-bd05-fc7ef7ec400a)
