@@ -117,5 +117,6 @@ Adding a new category
 ![image](https://github.com/user-attachments/assets/14431f3f-339e-42e4-8d9e-caa4eb0322de)
 ![image](https://github.com/user-attachments/assets/88098930-4ae3-4511-95b6-62a86937bba3)
 ![image](https://github.com/user-attachments/assets/a9531534-22d8-4882-a6a3-ea7fe72ded72)
+![image](https://github.com/user-attachments/assets/262ea975-baea-4e1a-b7a3-6aa8ba178ddb)
 
 
