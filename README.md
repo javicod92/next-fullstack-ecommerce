@@ -145,11 +145,10 @@ Stripe platform that allows the user to pay for all products ordered and accept 
 This image shows a success screen when the payment has been successfully completed
 ![image](https://github.com/user-attachments/assets/3633f397-682f-4cac-9201-c5d89145a68c)
 
-![image](https://github.com/user-attachments/assets/03c2d1f3-a756-463f-bd05-fc7ef7ec400a)
-![image](https://github.com/user-attachments/assets/f03af7db-9678-4dde-bd1f-2ac36680a47a)
-![image](https://github.com/user-attachments/assets/a8ebf01d-7870-4ac4-bed6-ab4192e4d328)
-![image](https://github.com/user-attachments/assets/14431f3f-339e-42e4-8d9e-caa4eb0322de)
-![image](https://github.com/user-attachments/assets/88098930-4ae3-4511-95b6-62a86937bba3)
-![image](https://github.com/user-attachments/assets/a9531534-22d8-4882-a6a3-ea7fe72ded72)
+**6) Responsive Design** 
+![Responsive1](https://github.com/user-attachments/assets/10e098e0-d52c-4cc5-8c10-03dedf8b7cbb)
+
+![Responsive2](https://github.com/user-attachments/assets/4bca94bc-ea51-4e00-9bec-1a384549bb8c)
+
 
 
