@@ -58,8 +58,18 @@ This project is a complete e-commerce platform with a focus on efficient adminis
 *6) Logout Function:*
 - This function allows the user to exit the page when the user no longer needs to use it
 
-**Page adapted to multiple screen resolutions (responsive)**
+*7) Page adapted to multiple screen resolutions (responsive):*
 - The page adapts to multiple screen resolutions for a better user experience
+
+### Frontend
+
+*1) Home Page:*
+- The home page shows the most recent products added to the database
+- The Header component (carousel) shows the featured products. I have used 3 featured products for this example
+- The body shows the 16 newest products added
+- The navigation bar and footer are present on all pages through the use of the layout
+
+*2) All Products Page:*
 
 ## 📸 Project Screenshots
 ### Backend App
