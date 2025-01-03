@@ -181,5 +181,8 @@ This image shows a success screen when the payment has been successfully complet
 
 ![Responsive2](https://github.com/user-attachments/assets/4bca94bc-ea51-4e00-9bec-1a384549bb8c)
 
+## 🥁 What makes this project interesting?
+This e-commerce project built in next.js 15 is a solid demonstration of my ability to improve and put my new knowledge in practice. This example covers both client-side and server-side rendering. Next, I will describe the most important aspects of the application.
 
+**1) APIs and data management:** The project makes use of custom APIs to manage key operations such as creating, updating and deleting products and categories from the database. This action includes real-time interactions with my database through MongoDB Atlas and Mongoose, which ensure robust and efficient inventory management.
 
