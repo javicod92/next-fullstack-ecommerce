@@ -70,6 +70,27 @@ This project is a complete e-commerce platform with a focus on efficient adminis
 - The navigation bar and footer are present on all pages through the use of the layout
 
 *2) All Products Page:*
+- Discount promotions are shown in the header
+- Currently, this page show all products stored in database
+- In the future, an API can be generated to return a paginated page
+
+*3) Categories Page:*
+- This page shows all categories and their products in different cards
+- Each category card has a scrollbar to see more products
+- In the future, an API can be created that returns all products of the same category
+
+*4) Cart Page:*
+- This page shows all products added to cart
+- Each product contains an image, quantity and total price
+- The page also has a section to proceed with the payment
+
+*5) Stripe Payment Page*
+- This page is displayed when the user wants to proceed with the payment
+- In this case, I have used the page designed by Stripe
+- When the payment is successful, the application displays a success page with an animation
+
+*6) Responsive Design*
+- All pages were designed to offer the best user experience
 
 ## 📸 Project Screenshots
 ### Backend App
