@@ -186,3 +186,8 @@ This e-commerce project built in next.js 15 is a solid demonstration of my abili
 
 **1) APIs and data management:** The project makes use of custom APIs to manage key operations such as creating, updating and deleting products and categories from the database. This action includes real-time interactions with my database through MongoDB Atlas and Mongoose, which ensure robust and efficient inventory management.
 
+**2) Autentication using NextAuth v5:** I have implemented user authentication through NextAuth v5 to allow a flexible and secure authentication system. This library allows to use different providers to manage the session like Google, GitHub, user credentials and more, it also allows a custom system with JWT(JSON Web Token) to manage sessions and ensure secure paths.
+
+**3) Implementation of online payments:** Another important feature of this project is the implementation of Stripe to accept online payments easily and securely.
+
+**4) Responsivity and visual design:** I use Tailwind, and css modules to build a modern and responsive user interface using the latest libraries, ensuring a smooth user experience on any device, be it a mobile phone or a desktop PC.
