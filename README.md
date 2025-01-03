@@ -199,7 +199,7 @@ This e-commerce project built in next.js 15 is a solid demonstration of my abili
 **7) Best practices in web development:** The project has been built following best practices, separating server and client logic, using reusable react components and state management through Hooks. I have also done different practices in local mode to ensure that the functions under development run smoothly.
 
 ## 💻 Installation and Configuration
-1) **Clone this repository**: https://github.com/javicod92/auth-next-15.git
+1) **Clone this repository**: https://github.com/javicod92/next-fullstack-ecommerce.git
 2) **Installs the dependencies**: npm install
 3) **Run the development server**: npm run dev
 
