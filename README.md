@@ -213,3 +213,5 @@ This e-commerce project built in next.js 15 is a solid demonstration of my abili
 - STRIPE_SK="YOUR-STRIPE-SECRET-KEY" / You need to have a Stripe account to obtain the Key
 - PUBLIC_URL="http://localhost:3000" / This variable is used to redirect users to the home page when payment is successful
 - STRIPE_ESK="YOUR-STRIPE-WEBHOOK-SIGNING_SECRET" / You need to download the Stripe client for local use, or set in production the address to which the different events will be sent in order to obtain the access key
+
+The project was deployed in Vercel: https://next-fullstack-ecommerce-1rpa.vercel.app/
