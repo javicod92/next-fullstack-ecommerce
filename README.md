@@ -186,8 +186,14 @@ This e-commerce project built in next.js 15 is a solid demonstration of my abili
 
 **1) APIs and data management:** The project makes use of custom APIs to manage key operations such as creating, updating and deleting products and categories from the database. This action includes real-time interactions with my database through MongoDB Atlas and Mongoose, which ensure robust and efficient inventory management.
 
-**2) Autentication using NextAuth v5:** I have implemented user authentication through NextAuth v5 to allow a flexible and secure authentication system. This library allows to use different providers to manage the session like Google, GitHub, user credentials and more, it also allows a custom system with JWT(JSON Web Token) to manage sessions and ensure secure paths.
+**2) Autentication using NextAuth v5:** I have implemented user authentication through NextAuth v5 to allow a flexible and secure authentication system. This library allows to use different providers to manage the session like Google, GitHub, user credentials and more, it also allows a custom system with JWT (JSON Web Token) to manage sessions and ensure secure paths.
 
 **3) Implementation of online payments:** Another important feature of this project is the implementation of Stripe to accept online payments easily and securely.
 
 **4) Responsivity and visual design:** I use Tailwind, and css modules to build a modern and responsive user interface using the latest libraries, ensuring a smooth user experience on any device, be it a mobile phone or a desktop PC.
+
+**5) Optimized user experience:** The design of the site and its functionality were thought to offer an attractive design using an infinite carousel of products and animations with Framer Motion, and also focusing on accessibility and usability.
+
+**6) Scalability and maintenance:** Using Next.js 15 and its modular structure, this project is designed to be easily scalable, separating reusable react components, pages, apis and other functions in their respective folders within the project.
+
+**7) Best practices in web development:** The project has been built following best practices, separating server and client logic, using reusable react components and state management through Hooks. I have also done different practices in local mode to ensure that the functions under development run smoothly.
