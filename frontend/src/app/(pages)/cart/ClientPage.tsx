@@ -32,6 +32,11 @@ export default function CartPage() {
   useEffect(() => {
     if (isSuccessPage) {
       clearCart();
+      const goToHome = setTimeout(() => {
+        router.push("/");
+      }, 5000);
+
+      return () => clearTimeout(goToHome);
     }
   }, []);
 
