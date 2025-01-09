@@ -2,11 +2,14 @@
 
 import { CartContext } from "@/context/CartContextProvider";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useContext, useState } from "react";
 
 export default function Header() {
   const { cartProducts } = useContext(CartContext)!;
   const [isNavOpen, setIsNavOpen] = useState<boolean>(false);
+  const pathname = usePathname();
+  console.log(pathname);
 
   return (
     <header className="bg-zinc-900 text-white flex justify-center fixed top-0 left-0 z-10 right-0 md:static">
@@ -23,19 +26,43 @@ export default function Header() {
               "flex flex-col absolute w-full h-screen transition-all ease-in-out duration-300 p-5 py-[50px] -z-10 bg-zinc-900 gap-4 md:flex-row md:static md:p-0 md:w-auto md:h-auto md:z-0"
             }
           >
-            <Link onClick={() => setIsNavOpen(false)} href={"/"}>
+            <Link
+              className={pathname === "/" ? "text-[#1ca4ff]" : "text-white"}
+              onClick={() => setIsNavOpen(false)}
+              href={"/"}
+            >
               Home
             </Link>
-            <Link onClick={() => setIsNavOpen(false)} href={"/products"}>
+            <Link
+              className={
+                pathname.includes("/products") ? "text-[#1ca4ff]" : "text-white"
+              }
+              onClick={() => setIsNavOpen(false)}
+              href={"/products"}
+            >
               All products
             </Link>
-            <Link onClick={() => setIsNavOpen(false)} href={"/categories"}>
+            <Link
+              className={
+                pathname.includes("/categories")
+                  ? "text-[#1ca4ff]"
+                  : "text-white"
+              }
+              onClick={() => setIsNavOpen(false)}
+              href={"/categories"}
+            >
               Categories
             </Link>
             <Link onClick={() => setIsNavOpen(false)} href={"/account"}>
               Account
             </Link>
-            <Link onClick={() => setIsNavOpen(false)} href={"/cart"}>
+            <Link
+              className={
+                pathname.includes("/cart") ? "text-[#1ca4ff]" : "text-white"
+              }
+              onClick={() => setIsNavOpen(false)}
+              href={"/cart"}
+            >
               <div>
                 <div className="hidden relative md:block">
                   <svg
