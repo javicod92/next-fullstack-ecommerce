@@ -75,6 +75,15 @@ export default function Featured({
     }
   }, [isTransitioning]);
 
+  function nextImage() {
+    setActiveIndex((prevIndex) => {
+      if (prevIndex < clonedProducts.length) {
+        return prevIndex + 1;
+      }
+      return 1;
+    });
+  }
+
   return (
     <div className="relative z-0 w-full overflow-hidden">
       <div
@@ -125,7 +134,7 @@ export default function Featured({
                       width={500}
                       height={500}
                       className="w-auto h-full max-h-[250px] object-contain md:max-h-[300px]"
-                      priority={true}
+                      priority={index === activeIndex}
                     />
                   </div>
                 </div>
@@ -142,9 +151,7 @@ export default function Featured({
       <div className="absolute left-1/2 -translate-x-1/2 bottom-[300px] md:flex gap-4 z-10 hidden">
         {products.map((product, index) => (
           <div
-            className={`w-3 h-3 rounded-full ring-1 ring-gray-200 cursor-pointer flex items-center justify-center ${
-              product._id === clonedProducts[activeIndex]._id ? "scale-150" : ""
-            }`}
+            className="w-3 h-3 rounded-full ring-1 ring-gray-200 cursor-pointer flex items-center justify-center"
             key={index}
             onClick={() => setActiveIndex(index + 1)}
           >
@@ -154,6 +161,51 @@ export default function Featured({
           </div>
         ))}
       </div>
+
+      {/* Arrow Left */}
+      <button
+        className="w-12 h-16 border-zinc-200 border-l-0 border bg-zinc-800 absolute top-[150px] left-0 shadow-md rounded-r-full hover:w-16 transition-all text-white flex items-center justify-center"
+        onMouseEnter={clearInterval}
+        onMouseLeave={startInterval}
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={2}
+          stroke="currentColor"
+          className="w-6 h-6"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M15.75 19.5 8.25 12l7.5-7.5"
+          />
+        </svg>
+      </button>
+
+      {/* Arrow Right */}
+      <button
+        className="w-12 h-16 border-zinc-200 border-r-0 border bg-zinc-800 absolute top-[150px] right-0 shadow-md rounded-l-full hover:w-16 transition-all text-white flex items-center justify-center"
+        onMouseEnter={clearInterval}
+        onMouseLeave={startInterval}
+        onClick={nextImage}
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={2}
+          stroke="currentColor"
+          className="w-6 h-6"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M8.25 19.5 15.75 12l-7.5-7.5"
+          />
+        </svg>
+      </button>
     </div>
   );
 }
