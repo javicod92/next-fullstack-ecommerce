@@ -65,13 +65,15 @@ export default function Featured({
   return (
     <div className="relative z-0 w-full">
       <div
-        className={`flex ${
+        className={`flex will-change-transform ${
           isTransitioning ? "transition-transform duration-500" : ""
         }`}
-        style={{ transform: `translateX(-${activeIndex * 100}%)` }}
+        style={{
+          transform: `translateX(-${activeIndex * 100}%)`,
+        }}
       >
         {clonedProducts.map((product, index) => (
-          <div key={index} className="w-full flex-shrink-0">
+          <div key={index} className="w-full flex-shrink-0 flex-grow-0">
             <div className="flex justify-center bg-zinc-900 text-white py-[25px]">
               <div className="w-full h-[300px] absolute bg-gradient-to-b from-zinc-900 from-40% to-80% to-transparent top-full" />
               <div className="Center h-[535px] md:h-[300px]">
