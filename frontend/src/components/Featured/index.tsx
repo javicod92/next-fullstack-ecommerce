@@ -121,9 +121,3 @@ export default function Featured({
     </div>
   );
 }
-
-/* 
-TODO: In this page, i can show different featured products from my database.
-To do this, i should create another page in my backend and add more products,
-then, create an carousel that contains all my products like Mercado Libre.
-*/
