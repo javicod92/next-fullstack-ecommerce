@@ -30,7 +30,7 @@ export default async function HomePage() {
       <div className="absolute top-[64px] left-0 right-0">
         <Featured products={productData.featuredProducts} />
       </div>
-      <div className="w-full h-[650px] md:h-[380px]"></div>
+      <div className="w-full h-[580px] md:h-[380px]"></div>
       <div>
         <NewProducts
           products={productData.newProducts}

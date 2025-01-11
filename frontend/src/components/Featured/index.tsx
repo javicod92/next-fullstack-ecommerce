@@ -13,6 +13,7 @@ export default function Featured({
   const { addProduct } = useContext(CartContext)!;
   const [activeIndex, setActiveIndex] = useState<number>(1); // Start at 1 for the first actual product
   const [isTransitioning, setIsTransitioning] = useState<boolean>(true);
+  const [isLocked, setIsLocked] = useState(false);
   const transitionRef = useRef<NodeJS.Timeout | null>(null);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -76,22 +77,31 @@ export default function Featured({
   }, [isTransitioning]);
 
   function nextImage() {
-    setActiveIndex((prevIndex) => {
-      if (prevIndex < clonedProducts.length) {
-        return prevIndex + 1;
-      }
-      return 1;
-    });
+    if (isLocked) return;
+    setIsLocked(true);
+    setActiveIndex((prevIndex) => (prevIndex += 1));
+    setTimeout(() => {
+      setIsLocked(false);
+    }, 500);
+  }
+
+  function prevImage() {
+    if (isLocked) return;
+    setIsLocked(true);
+    setActiveIndex((prevIndex) => (prevIndex -= 1));
+    setTimeout(() => {
+      setIsLocked(false);
+    }, 500);
   }
 
   return (
     <div
       className="relative w-full overflow-hidden group"
-      onMouseEnter={clearInterval} // Activo cuando el cursor entra al contenedor principal
-      onMouseLeave={startInterval} // Activo cuando el cursor sale del contenedor principal
+      onMouseEnter={clearInterval}
+      onMouseLeave={startInterval}
     >
       <div
-        className={`flex will-change-transform ${
+        className={`flex ${
           isTransitioning ? "transition-transform duration-500" : ""
         }`}
         style={{
@@ -136,7 +146,7 @@ export default function Featured({
                       width={500}
                       height={500}
                       className="w-auto h-full max-h-[250px] object-contain md:max-h-[300px]"
-                      priority={index === activeIndex}
+                      priority={true}
                     />
                   </div>
                 </div>
@@ -167,7 +177,8 @@ export default function Featured({
       {/* Arrow Left */}
       <button
         className="w-12 h-16 border-zinc-200 border-l-0 border bg-white absolute top-[150px] left-0 shadow-md rounded-r-full hover:w-16 transition-all text-blue-600 flex items-center justify-center opacity-0 group-hover:opacity-100"
-        onClick={() => setActiveIndex(activeIndex - 1)}
+        onClick={prevImage}
+        aria-label="Prev"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -189,6 +200,7 @@ export default function Featured({
       <button
         className="w-12 h-16 border-zinc-200 border-r-0 border bg-white absolute top-[150px] right-0 shadow-md rounded-l-full hover:w-16 transition-all text-blue-600 flex items-center justify-center opacity-0 group-hover:opacity-100"
         onClick={nextImage}
+        aria-label="Next"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
