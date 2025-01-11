@@ -26,13 +26,18 @@ async function getServerSideProps() {
 export default async function HomePage() {
   const productData = await getServerSideProps();
   return (
-    <div className="overflow-x-hidden">
-      <Featured products={productData.featuredProducts} />
-      <NewProducts
-        products={productData.newProducts}
-        title="New Arrivals"
-        titleStyles="text-white"
-      />
+    <div>
+      <div className="absolute top-[64px] left-0 right-0">
+        <Featured products={productData.featuredProducts} />
+      </div>
+      <div className="w-full h-[580px] md:h-[380px]"></div>
+      <div>
+        <NewProducts
+          products={productData.newProducts}
+          title="New Arrivals"
+          titleStyles="text-white"
+        />
+      </div>
     </div>
   );
 }

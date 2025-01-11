@@ -13,7 +13,9 @@ export default function Featured({
   const { addProduct } = useContext(CartContext)!;
   const [activeIndex, setActiveIndex] = useState<number>(1); // Start at 1 for the first actual product
   const [isTransitioning, setIsTransitioning] = useState<boolean>(true);
+  const [isLocked, setIsLocked] = useState(false);
   const transitionRef = useRef<NodeJS.Timeout | null>(null);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   // Clone products for seamless looping
   const clonedProducts = [
@@ -22,13 +24,25 @@ export default function Featured({
     products[0], // First product at the end
   ];
 
-  // Function to change the image every 5 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
+  // Function to start the interval
+  const startInterval = () => {
+    intervalRef.current = setInterval(() => {
       setActiveIndex((prevIndex) => prevIndex + 1);
     }, 5000);
+  };
 
-    return () => clearInterval(interval);
+  // Function to clear the interval
+  const clearInterval = () => {
+    if (intervalRef.current) {
+      clearTimeout(intervalRef.current);
+      intervalRef.current = null;
+    }
+  };
+
+  // Start interval on mount
+  useEffect(() => {
+    startInterval();
+    return () => clearInterval(); // Clear on unmount
   }, []);
 
   // Handle seamless looping
@@ -62,10 +76,32 @@ export default function Featured({
     }
   }, [isTransitioning]);
 
+  function nextImage() {
+    if (isLocked) return;
+    setIsLocked(true);
+    setActiveIndex((prevIndex) => (prevIndex += 1));
+    setTimeout(() => {
+      setIsLocked(false);
+    }, 500);
+  }
+
+  function prevImage() {
+    if (isLocked) return;
+    setIsLocked(true);
+    setActiveIndex((prevIndex) => (prevIndex -= 1));
+    setTimeout(() => {
+      setIsLocked(false);
+    }, 500);
+  }
+
   return (
-    <div className="relative z-0 w-full">
+    <div
+      className="relative w-full overflow-hidden group"
+      onMouseEnter={clearInterval}
+      onMouseLeave={startInterval}
+    >
       <div
-        className={`flex will-change-transform ${
+        className={`flex ${
           isTransitioning ? "transition-transform duration-500" : ""
         }`}
         style={{
@@ -73,10 +109,9 @@ export default function Featured({
         }}
       >
         {clonedProducts.map((product, index) => (
-          <div key={index} className="w-full flex-shrink-0 flex-grow-0">
-            <div className="flex justify-center bg-zinc-900 text-white py-[25px]">
-              <div className="w-full h-[300px] absolute bg-gradient-to-b from-zinc-900 from-40% to-80% to-transparent top-full" />
-              <div className="Center h-[535px] md:h-[300px]">
+          <div key={index} className="w-full flex-shrink-0">
+            <div className="flex h-[600px] md:h-[380px] justify-center bg-zinc-900 text-white py-[25px]">
+              <div className="Center h-full">
                 <div className="flex flex-col-reverse gap-10 md:grid md:grid-cols-2">
                   <div className="flex flex-col justify-center">
                     <h1 className="text-4xl sm:text-5xl">{product?.title}</h1>
@@ -110,16 +145,78 @@ export default function Featured({
                       alt="Product"
                       width={500}
                       height={500}
-                      className="max-w-[400px] w-full h-auto max-h-[250px] object-contain md:max-w-full md:max-h-[300px]"
+                      className="w-auto h-full max-h-[250px] object-contain md:max-h-[300px]"
                       priority={true}
                     />
                   </div>
                 </div>
               </div>
             </div>
+
+            {/* Background with degree */}
+            <div className="w-full h-[300px] bg-gradient-to-b from-zinc-900 from-40% to-80% to-[#eee] top-full" />
           </div>
         ))}
       </div>
+
+      {/* Pagination dots */}
+      <div className="absolute left-1/2 -translate-x-1/2 bottom-[300px] md:flex gap-4 z-10 hidden">
+        {products.map((product, index) => (
+          <div
+            className="w-3 h-3 rounded-full ring-1 ring-gray-200 cursor-pointer flex items-center justify-center"
+            key={index}
+            onClick={() => setActiveIndex(index + 1)}
+          >
+            {product._id === clonedProducts[activeIndex]._id && (
+              <div className="w-[6px] h-[6px] bg-gray-200 rounded-full"></div>
+            )}
+          </div>
+        ))}
+      </div>
+
+      {/* Arrow Left */}
+      <button
+        className="w-12 h-16 border-zinc-200 border-l-0 border bg-white absolute top-[150px] left-0 shadow-md rounded-r-full hover:w-16 transition-all text-blue-600 flex items-center justify-center opacity-0 group-hover:opacity-100"
+        onClick={prevImage}
+        aria-label="Prev"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={2}
+          stroke="currentColor"
+          className="w-6 h-6"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M15.75 19.5 8.25 12l7.5-7.5"
+          />
+        </svg>
+      </button>
+
+      {/* Arrow Right */}
+      <button
+        className="w-12 h-16 border-zinc-200 border-r-0 border bg-white absolute top-[150px] right-0 shadow-md rounded-l-full hover:w-16 transition-all text-blue-600 flex items-center justify-center opacity-0 group-hover:opacity-100"
+        onClick={nextImage}
+        aria-label="Next"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={2}
+          stroke="currentColor"
+          className="w-6 h-6"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M8.25 19.5 15.75 12l-7.5-7.5"
+          />
+        </svg>
+      </button>
     </div>
   );
 }
