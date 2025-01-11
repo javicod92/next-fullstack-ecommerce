@@ -85,20 +85,23 @@ export default function Featured({
   }
 
   return (
-    <div className="relative z-0 w-full overflow-hidden">
+    <div
+      className="relative w-full overflow-hidden group"
+      onMouseEnter={clearInterval} // Activo cuando el cursor entra al contenedor principal
+      onMouseLeave={startInterval} // Activo cuando el cursor sale del contenedor principal
+    >
       <div
         className={`flex ${
           isTransitioning ? "transition-transform duration-500" : ""
         }`}
-        style={{ transform: `translateX(-${activeIndex * 100}%)` }}
+        style={{
+          transform: `translateX(-${activeIndex * 100}%)`,
+          willChange: "transform",
+        }}
       >
         {clonedProducts.map((product, index) => (
           <div key={index} className="w-full flex-shrink-0">
-            <div
-              className="flex h-[600px] md:h-[380px] justify-center bg-zinc-900 text-white py-[25px]"
-              onMouseEnter={clearInterval}
-              onMouseLeave={startInterval}
-            >
+            <div className="flex h-[600px] md:h-[380px] justify-center bg-zinc-900 text-white py-[25px]">
               <div className="Center h-full">
                 <div className="flex flex-col-reverse gap-10 md:grid md:grid-cols-2">
                   <div className="flex flex-col justify-center">
@@ -142,7 +145,7 @@ export default function Featured({
             </div>
 
             {/* Background with degree */}
-            <div className="w-full h-[300px] bg-gradient-to-b from-zinc-900 from-40% to-80% to-transparent top-full" />
+            <div className="w-full h-[300px] bg-gradient-to-b from-zinc-900 from-40% to-80% to-[#eee] top-full" />
           </div>
         ))}
       </div>
@@ -164,9 +167,8 @@ export default function Featured({
 
       {/* Arrow Left */}
       <button
-        className="w-12 h-16 border-zinc-200 border-l-0 border bg-zinc-800 absolute top-[150px] left-0 shadow-md rounded-r-full hover:w-16 transition-all text-white flex items-center justify-center"
-        onMouseEnter={clearInterval}
-        onMouseLeave={startInterval}
+        className="w-12 h-16 border-zinc-200 border-l-0 border bg-white absolute top-[150px] left-0 shadow-md rounded-r-full hover:w-16 transition-all text-blue-600 flex items-center justify-center opacity-0 group-hover:opacity-100"
+        onClick={() => setActiveIndex(activeIndex - 1)}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -186,9 +188,7 @@ export default function Featured({
 
       {/* Arrow Right */}
       <button
-        className="w-12 h-16 border-zinc-200 border-r-0 border bg-zinc-800 absolute top-[150px] right-0 shadow-md rounded-l-full hover:w-16 transition-all text-white flex items-center justify-center"
-        onMouseEnter={clearInterval}
-        onMouseLeave={startInterval}
+        className="w-12 h-16 border-zinc-200 border-r-0 border bg-white absolute top-[150px] right-0 shadow-md rounded-l-full hover:w-16 transition-all text-blue-600 flex items-center justify-center opacity-0 group-hover:opacity-100"
         onClick={nextImage}
       >
         <svg
