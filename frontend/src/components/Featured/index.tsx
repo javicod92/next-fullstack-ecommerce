@@ -96,7 +96,6 @@ export default function Featured({
         }`}
         style={{
           transform: `translateX(-${activeIndex * 100}%)`,
-          willChange: "transform",
         }}
       >
         {clonedProducts.map((product, index) => (
