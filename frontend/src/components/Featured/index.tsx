@@ -91,9 +91,12 @@ export default function Featured({
       onMouseLeave={startInterval} // Activo cuando el cursor sale del contenedor principal
     >
       <div
-        className={`flex ${
+        className={`flex will-change-transform ${
           isTransitioning ? "transition-transform duration-500" : ""
         }`}
+        style={{
+          transform: `translateX(-${activeIndex * 100}%)`,
+        }}
         style={{
           transform: `translateX(-${activeIndex * 100}%)`,
         }}
