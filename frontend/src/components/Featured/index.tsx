@@ -97,9 +97,6 @@ export default function Featured({
         style={{
           transform: `translateX(-${activeIndex * 100}%)`,
         }}
-        style={{
-          transform: `translateX(-${activeIndex * 100}%)`,
-        }}
       >
         {clonedProducts.map((product, index) => (
           <div key={index} className="w-full flex-shrink-0">
