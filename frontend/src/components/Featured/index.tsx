@@ -161,13 +161,13 @@ export default function Featured({
 
       {/* Pagination dots */}
       <div className="absolute left-1/2 -translate-x-1/2 bottom-[300px] md:flex gap-4 z-10 hidden">
-        {products.map((product, index) => (
+        {products.map((_, index) => (
           <div
             className="w-3 h-3 rounded-full ring-1 ring-gray-200 cursor-pointer flex items-center justify-center"
             key={index}
             onClick={() => setActiveIndex(index + 1)}
           >
-            {product._id === clonedProducts[activeIndex]._id && (
+            {activeIndex === index + 1 && (
               <div className="w-[6px] h-[6px] bg-gray-200 rounded-full"></div>
             )}
           </div>
