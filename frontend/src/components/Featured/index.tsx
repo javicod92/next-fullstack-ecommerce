@@ -24,6 +24,13 @@ export default function Featured({
     products[0], // First product at the end
   ];
 
+  const realIndex =
+    activeIndex === 0
+      ? products.length - 1
+      : activeIndex === clonedProducts.length - 1
+      ? 0
+      : activeIndex - 1;
+
   // Function to start the interval
   const startInterval = () => {
     intervalRef.current = setInterval(() => {
@@ -167,7 +174,7 @@ export default function Featured({
             key={index}
             onClick={() => setActiveIndex(index + 1)}
           >
-            {activeIndex === index + 1 && (
+            {realIndex === index && (
               <div className="w-[6px] h-[6px] bg-gray-200 rounded-full"></div>
             )}
           </div>
