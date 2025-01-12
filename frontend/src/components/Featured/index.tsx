@@ -24,6 +24,7 @@ export default function Featured({
     products[0], // First product at the end
   ];
 
+  // Variable used to obtain the real index based on my original array
   const realIndex =
     activeIndex === 0
       ? products.length - 1
