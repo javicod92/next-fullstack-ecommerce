@@ -132,6 +132,9 @@ This example shows the header(carousel) of the Home page
 This example shows the second product of the carousel (2 of 3)
 ![image](https://github.com/user-attachments/assets/262ea975-baea-4e1a-b7a3-6aa8ba178ddb)
 
+This picture shows the controls when the user hovers over the product
+![image](https://github.com/user-attachments/assets/7e1290a6-a6d3-49d4-82d8-1d304617301e)
+
 This image shows the most recent products in the body of the Home page
 ![image](https://github.com/user-attachments/assets/0df28ca9-9da1-4460-95dd-f178049b5914)
 
