@@ -117,9 +117,9 @@ export default function Featured({
         }}
       >
         {clonedProducts.map((product, index) => (
-          <div key={index} className="w-full flex-shrink-0">
-            <div className="flex h-[600px] md:h-[380px] justify-center bg-zinc-900 text-white py-[25px]">
-              <div className="Center h-full">
+          <div key={index} className="w-full flex-shrink-0 flex-grow-0">
+            <div className="flex justify-center bg-zinc-900 text-white py-[25px]">
+              <div className="Center h-[535px] md:h-[300px]">
                 <div className="flex flex-col-reverse gap-10 md:grid md:grid-cols-2">
                   <div className="flex flex-col justify-center">
                     <h1 className="text-4xl sm:text-5xl">{product?.title}</h1>
@@ -153,7 +153,7 @@ export default function Featured({
                       alt="Product"
                       width={500}
                       height={500}
-                      className="w-auto h-full max-h-[250px] object-contain md:max-h-[300px]"
+                      className="max-w-[400px] w-full h-auto max-h-[250px] object-contain md:max-w-full md:max-h-[280px]"
                       priority={true}
                     />
                   </div>
