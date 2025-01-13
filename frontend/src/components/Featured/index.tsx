@@ -55,14 +55,14 @@ export default function Featured({
 
   // Handle seamless looping
   useEffect(() => {
-    if (activeIndex === clonedProducts.length - 1) {
+    if (activeIndex >= clonedProducts.length - 1) {
       transitionRef.current = setTimeout(() => {
         setIsTransitioning(false); // Disable transition
         setActiveIndex(1); // Reset to the first actual product
       }, 500); // Match transition duration
     }
 
-    if (activeIndex === 0) {
+    if (activeIndex <= 0) {
       transitionRef.current = setTimeout(() => {
         setIsTransitioning(false); // Disable transition
         setActiveIndex(clonedProducts.length - 2); // Reset to the last actual product
