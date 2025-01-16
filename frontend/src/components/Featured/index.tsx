@@ -13,6 +13,7 @@ export default function Featured({
   const { addProduct } = useContext(CartContext)!;
   const [activeIndex, setActiveIndex] = useState<number>(1); // Start at 1 for the first actual product
   const [isTransitioning, setIsTransitioning] = useState<boolean>(true);
+  const [isIntervalActive, setIsIntervalActive] = useState<boolean>(true);
   const [isLocked, setIsLocked] = useState(false);
   const transitionRef = useRef<NodeJS.Timeout | null>(null);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
@@ -32,26 +33,22 @@ export default function Featured({
       ? 0
       : activeIndex - 1;
 
-  // Function to start the interval
-  const startInterval = () => {
-    intervalRef.current = setInterval(() => {
-      setActiveIndex((prevIndex) => prevIndex + 1);
-    }, 5000);
-  };
-
-  // Function to clear the interval
-  const clearInterval = () => {
-    if (intervalRef.current) {
-      clearTimeout(intervalRef.current);
-      intervalRef.current = null;
-    }
-  };
-
   // Start interval on mount
   useEffect(() => {
-    startInterval();
-    return () => clearInterval(); // Clear on unmount
-  }, []);
+    if (isIntervalActive) {
+      intervalRef.current = setInterval(() => {
+        setActiveIndex((prevIndex) => (prevIndex += 1));
+      }, 5000);
+    }
+
+    // Clear Interval on unmount
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
+    };
+  }, [isIntervalActive]);
 
   // Handle seamless looping
   useEffect(() => {
@@ -102,10 +99,18 @@ export default function Featured({
     }, 500);
   }
 
+  function startInterval() {
+    setIsIntervalActive(true);
+  }
+
+  function stopInterval() {
+    setIsIntervalActive(false);
+  }
+
   return (
     <div
       className="relative w-full overflow-hidden group"
-      onMouseEnter={clearInterval}
+      onMouseEnter={stopInterval}
       onMouseLeave={startInterval}
     >
       <div
